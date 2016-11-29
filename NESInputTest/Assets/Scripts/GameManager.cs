@@ -11,13 +11,13 @@ public class GameManager : MonoBehaviour {
     public bool m_countDown;
 
     private float m_score;
-    public float m_playTime;
+    private float m_playTime;
 
-    public float m_startTime;
-    public float m_pausedStartTime;
-    public float m_pauseLength;
+    private float m_startTime;
+    private float m_pausedStartTime;
+    private float m_pauseLength;
 
-    public bool m_checkStop;
+    private bool m_checkStop;
 
 	// Use this for initialization
 	void Start () {
@@ -52,7 +52,6 @@ public class GameManager : MonoBehaviour {
                 }
             case StateManager.State.PLAY:
                 {
-                    AddToScore(1.0f);
                     UpdateTime();
                     UpdateScore();
 
