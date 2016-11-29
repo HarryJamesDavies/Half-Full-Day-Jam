@@ -310,7 +310,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 684983120}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebe97552286dbfd43b019141db60b7bd, type: 3}
+  m_Script: {fileID: 11500000, guid: f0978771e3262c54b876239182dbb1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!23 &684983122
@@ -503,7 +503,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 997304155}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebe97552286dbfd43b019141db60b7bd, type: 3}
+  m_Script: {fileID: 11500000, guid: f0978771e3262c54b876239182dbb1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!23 &997304157
@@ -1013,7 +1013,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1493883522}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebe97552286dbfd43b019141db60b7bd, type: 3}
+  m_Script: {fileID: 11500000, guid: f0978771e3262c54b876239182dbb1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!23 &1493883524
@@ -1569,12 +1569,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_scoreText: {fileID: 1008722241}
   m_timeText: {fileID: 1613041938}
-  m_maxTime: 10
+  m_maxTime: 600
   m_countDown: 1
   m_playTime: 0
   m_startTime: 0
   m_pausedStartTime: 0
   m_pauseLength: 0
+  m_checkStop: 0
 --- !u!1 &1967904143
 GameObject:
   m_ObjectHideFlags: 0
@@ -1675,7 +1676,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1972933215}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebe97552286dbfd43b019141db60b7bd, type: 3}
+  m_Script: {fileID: 11500000, guid: f0978771e3262c54b876239182dbb1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!23 &1972933217

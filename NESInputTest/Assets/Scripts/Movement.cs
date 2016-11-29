@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Movement : MonoBehaviour {
-	
-	void Update ()
+public class Movement : MonoBehaviour
+{
+
+    void Update()
     {
         switch (gameObject.tag)
         {
@@ -22,7 +23,7 @@ public class Movement : MonoBehaviour {
             default:
                 break;
         }
-	}
+    }
 
     void PlayerMovement(int _controller)
     {
