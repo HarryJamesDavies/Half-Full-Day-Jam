@@ -1,32 +1,50 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class movement : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
+public class Movement : MonoBehaviour {
 	
+	void Update ()
+    {
+        switch (gameObject.tag)
+        {
+            case "Player1":
+                PlayerMovement(1);
+                break;
+            case "Player2":
+                PlayerMovement(2);
+                break;
+            case "Player3":
+                PlayerMovement(3);
+                break;
+            case "Player4":
+                PlayerMovement(4);
+                break;
+            default:
+                break;
+        }
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	    if (Input.GetButtonDown("A(NES)"))
+
+    void PlayerMovement(int _controller)
+    {
+        if (Input.GetButtonDown("P" + _controller + "-A(NES)"))
         {
-            this.transform.position += new Vector3(0.0f, 1.0f, 0.0f);
+            transform.position += new Vector3(0.0f, 1.0f, 0.0f);
+            Debug.Log("Player 1 Press A");
         }
-        else if (Input.GetButtonDown("B(NES)"))
+        else if (Input.GetButtonDown("P" + _controller + "-B(NES)"))
         {
-            this.transform.position += new Vector3(1.0f, 0.0f, 0.0f);
+            transform.position += new Vector3(1.0f, 0.0f, 0.0f);
+            Debug.Log("Player 1 Press B");
         }
-        else if (Input.GetButtonDown("Select(NES)"))
+        else if (Input.GetButtonDown("P" + _controller + "-Select(NES)"))
         {
-            this.transform.position += new Vector3(0.0f, -1.0f, 0.0f);
+            transform.position += new Vector3(0.0f, -1.0f, 0.0f);
         }
-        else if (Input.GetButtonDown("Start(NES)"))
+        else if (Input.GetButtonDown("P" + _controller + "-Start(NES)"))
         {
-            this.transform.position += new Vector3(-1.0f, 0.0f, 0.0f);
+            transform.position += new Vector3(-1.0f, 0.0f, 0.0f);
         }
 
-        transform.position += new Vector3(Input.GetAxis("Horizontal(NES)") * 0.1f, Input.GetAxis("Vertical(NES)") * -0.1f, 0.0f);
-	}
+        transform.position += new Vector3(Input.GetAxis("P" + _controller + "-Horizontal(NES)") * 0.1f, Input.GetAxis("P" + _controller + "-Vertical(NES)") * -0.1f, 0.0f);
+    }
 }
