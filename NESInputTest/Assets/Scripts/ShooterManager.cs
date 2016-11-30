@@ -46,7 +46,7 @@ public class ShooterManager : MonoBehaviour
                     }
                     break;
                 }
-            case StateManager.State.GAMEOVER:
+            case StateManager.State.RESET:
                 {
                     if(shootersInGame == true)
                     {
