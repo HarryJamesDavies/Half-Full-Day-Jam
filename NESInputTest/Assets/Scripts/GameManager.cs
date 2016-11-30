@@ -22,13 +22,15 @@ public class GameManager : MonoBehaviour
     private ShipManager m_GameWinner;
 
 
-    public Text m_scoreText;
+    public Text m_p1ScoreText;
+    public Text m_p2ScoreText;
     public Text m_timeText;
 
     public float m_maxTime;
     public bool m_countDown;
 
-    private float m_score;
+    private float m_p1Score;
+    private float m_p2Score;
     private float m_playTime;
 
     private float m_startTime;
@@ -194,6 +196,9 @@ public class GameManager : MonoBehaviour
                     }
                     
                     m_GameWinner = GetGameWinner();
+
+                    m_p1Score = m_ships[0].m_NumberOfWins;
+                    m_p2Score = m_ships[1].m_NumberOfWins;
                     break;
                 }
             case StateManager.State.PAUSE:
@@ -241,12 +246,8 @@ public class GameManager : MonoBehaviour
 
     void UpdateScore()
     {
-        m_scoreText.text = "Score: " + m_score;
-    }
-
-    public void AddToScore(float _value)
-    {
-        m_score += _value;
+        m_p1ScoreText.text = "P1 Score: " + m_p1Score;
+        m_p2ScoreText.text = "P2 Score: " + m_p2Score;
     }
 
     void ResetData()
@@ -256,7 +257,8 @@ public class GameManager : MonoBehaviour
         m_playTime = 0.0f;
         m_pauseLength = 0.0f;
 
-        m_score = 0.0f;
+        //m_p1Score = 0.0f;
+        //m_p2Score = 0.0f;
     }
 
     //============================================== MATTS WORK ==============================================//
