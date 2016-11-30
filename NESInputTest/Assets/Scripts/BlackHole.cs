@@ -8,6 +8,8 @@ public class BlackHole : MonoBehaviour {
     public Vector3 m_rotationVector;
     public float m_gravityCoefficient;
 
+	public AudioClip BlackHoleClip;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -18,6 +20,9 @@ public class BlackHole : MonoBehaviour {
         else
         {
             m_instance = this;
+			AudioSource audio = GetComponent<AudioSource>();
+			audio.clip = BlackHoleClip;
+			audio.Play();
         }
 	}
 	
