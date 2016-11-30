@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_rotationVector: {x: 0, y: 0, z: 1}
-  m_gravityCoefficient: 0.05
+  m_gravityCoefficient: 9.8
 --- !u!114 &11425496
 MonoBehaviour:
   m_ObjectHideFlags: 1

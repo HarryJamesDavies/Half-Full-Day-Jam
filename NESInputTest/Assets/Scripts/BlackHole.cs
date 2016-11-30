@@ -41,10 +41,10 @@ public class BlackHole : MonoBehaviour {
     {
         if (_delta == 0.0f)
         {
-            return -Vector2.MoveTowards(gameObject.transform.position, _objectPosition, m_gravityCoefficient);
+            return -Vector2.MoveTowards(gameObject.transform.position, _objectPosition, m_gravityCoefficient * Time.deltaTime);
         }
 
-        return -Vector2.MoveTowards(gameObject.transform.position, _objectPosition, _delta);
+        return -Vector2.MoveTowards(gameObject.transform.position, _objectPosition, _delta * Time.deltaTime);
     }
 
     public Vector2 GetGravityVector(Vector2 _objectPosition, float _delta = 0.0f)
@@ -53,10 +53,10 @@ public class BlackHole : MonoBehaviour {
 
         if (_delta == 0.0f)
         {
-            return -Vector2.MoveTowards(Position, _objectPosition, m_gravityCoefficient);
+            return -Vector2.MoveTowards(Position, _objectPosition, m_gravityCoefficient * Time.deltaTime);
         }
   
-        return -Vector2.MoveTowards(Position, _objectPosition, _delta);
+        return -Vector2.MoveTowards(Position, _objectPosition, _delta * Time.deltaTime);
     }
 
     public Vector3 GetGravityForce(Vector3 _objectPosition, bool _direction)
