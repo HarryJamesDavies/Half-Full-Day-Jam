@@ -17,11 +17,11 @@ public class Movement : MonoBehaviour
     void Start()
     {
         m_rb = GetComponent<Rigidbody2D>();
-        m_thrust = 2.0f;
+        m_thrust = 5.0f;
         m_maxVelocity = 20.0f;
-        m_boostSpeed = 250.0f;
+        m_boostSpeed = 400.0f;
         m_boostTotal = 100.0f;
-        m_rotationSpeed = 25.0f;
+        m_rotationSpeed = 50.0f;
     }
 
     void Update()
@@ -42,7 +42,11 @@ public class Movement : MonoBehaviour
 
             if (m_boostTotal < 100.0f)
             {
-                m_boostTotal += 1.0f;
+                m_boostTotal += 0.2f;
+            }
+            else
+            {
+                m_boostTotal = 100.0f;
             }
 
             Vector2 position = new Vector2(transform.position.x, transform.position.y);
@@ -62,7 +66,6 @@ public class Movement : MonoBehaviour
             if (Input.GetButton("P" + _controller + "-A(NES)"))
             {
                 gameObject.GetComponent<Rigidbody2D>().AddForce(m_force, ForceMode2D.Impulse);
-                //m_velocity += m_force;
             }
             else if (Input.GetButtonDown("P" + _controller + "-B(NES)"))
             {
@@ -70,7 +73,6 @@ public class Movement : MonoBehaviour
                 {
                     Vector2 m_boostForce = (Vector2)transform.right * m_boostSpeed * Time.deltaTime;
                     gameObject.GetComponent<Rigidbody2D>().AddForce(m_boostForce, ForceMode2D.Impulse);
-                   // m_velocity += m_boostForce;
                     m_boostTotal -= 40.0f;
                     Debug.Log(m_boostTotal);
                 }
@@ -86,8 +88,6 @@ public class Movement : MonoBehaviour
 
             float m_rotation = -Input.GetAxis("P" + _controller + "-Horizontal(NES)") * m_rotationSpeed * Time.deltaTime;
             transform.Rotate(0, 0, m_rotation);
-
-           //m_rb.MovePosition(m_rb.position + -m_velocity * Time.deltaTime);
         }
     }
 }
