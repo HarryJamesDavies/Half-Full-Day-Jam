@@ -7,6 +7,13 @@ public class SideSpawnerScript : MonoBehaviour {
     GameObject m_bulletRef;
 
     [SerializeField]
+    GameObject m_bulletRef1;
+    [SerializeField]
+    GameObject m_bulletRef2;
+    [SerializeField]
+    GameObject m_bulletRef3;
+
+    [SerializeField]
     int side = 0;
 
     [SerializeField]
@@ -60,15 +67,30 @@ public class SideSpawnerScript : MonoBehaviour {
 
     void SpawnBullet()
     {
+        int randomAsteroid = (int)Random.Range(1.0f, 3.0f);
+
         float posY;
         float posX;
         float min = 0.0f;
         float max = 10.0f;
 
+        if(randomAsteroid == 1)
+        {
+            m_bulletRef = m_bulletRef1;
+        }
+        else if(randomAsteroid == 2)
+        {
+            m_bulletRef = m_bulletRef2;
+        }
+        else if(randomAsteroid == 3)
+        {
+            m_bulletRef = m_bulletRef3;
+        }
+
         if (side == 0) //top
         {
-            min = -20.0f;
-            max = 20.0f;
+            min = -25.0f;
+            max = 25.0f;
 
             posY = 15.0f; //up or down boundary
             posX = Random.Range(min, max); //right or left boundary boundary
@@ -79,8 +101,8 @@ public class SideSpawnerScript : MonoBehaviour {
         }
         else if (side == 1) //left
         {
-            min = -10.0f;
-            max = 10.0f;
+            min = -15.0f;
+            max = 15.0f;
 
             posY = Random.Range(min, max); //up or down boundary
             posX = -50.0f; //right or left boundary boundary
@@ -91,8 +113,8 @@ public class SideSpawnerScript : MonoBehaviour {
         }
         else if (side == 2) //down
         {
-            min = -20.0f;
-            max = 20.0f;
+            min = -25.0f;
+            max = 25.0f;
 
             posY = -15.0f; //up or down boundary
             posX = Random.Range(min, max); //right or left boundary boundary
@@ -103,8 +125,8 @@ public class SideSpawnerScript : MonoBehaviour {
         }
         else if (side == 3) //right
         {
-            min = -10.0f;
-            max = 10.0f;
+            min = -15.0f;
+            max = 15.0f;
 
             posY = Random.Range(min, max); //up or down boundary
             posX = 50.0f; //right or left boundary boundary
