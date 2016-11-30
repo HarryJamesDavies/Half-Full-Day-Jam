@@ -2,7 +2,21 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
+    public ShipManager[] m_ships;
+    public GameObject m_ShipPrefab;
+
+    public int m_NumberOfRoundsToWin = 5;
+
+    //used for delays in between rounds
+    private WaitForSeconds m_roundStart;
+    private WaitForSeconds m_roundEnd;
+
+    //who wins what and when?
+    private ShipManager m_Roundwinner;
+    private ShipManager m_GameWinner;
+
 
     public Text m_scoreText;
     public Text m_timeText;
@@ -19,13 +33,20 @@ public class GameManager : MonoBehaviour {
 
     private bool m_checkStop;
 
-	// Use this for initialization
-	void Start () {
+
+
+    // Use this for initialization
+    void Start()
+    {
+        m_roundStart = new WaitForSeconds(3.0f);
+        m_roundEnd = new WaitForSeconds(3.0f);
+
+        SpawnShips();
         m_pauseLength = 0.0f;
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    }
+
+    // Update is called once per frame
+    void Update()
     {
         //Check if the state has changed
         if (StateManager.m_instance.m_dirtyFlag)
@@ -89,7 +110,7 @@ public class GameManager : MonoBehaviour {
                 {
                     if (StateManager.m_instance.m_prevState != StateManager.State.PAUSE)
                     {
-                        ResetData();            
+                        ResetData();
                     }
                     m_checkStop = false;
                     break;
@@ -182,4 +203,99 @@ public class GameManager : MonoBehaviour {
 
         m_score = 0.0f;
     }
+
+    //============================================== MATTS WORK ==============================================//
+    //========================================================================================================//
+
+    //disable ship control
+    private void DisableShips()
+    {
+        for (int i = 0; i < m_ships.Length; i++)
+        {
+            m_ships[i].disableControl();
+        }
+    }
+    
+    //enable ship control
+    private void EnableShips()
+    {
+        for (int i = 0; i < m_ships.Length; i++)
+        {
+            m_ships[i].enableControl();
+        }
+    }
+
+    //spawn ships at the spawn locations
+    private void SpawnShips()
+    {
+        for(int i = 0; i < m_ships.Length;i++)
+        {
+            m_ships[i].m_PlayerInstance = 
+            (GameObject)Instantiate(m_ShipPrefab, m_ships[i].m_SpawnPoint.position, m_ships[i].m_SpawnPoint.rotation);
+
+            //sync the correct player number
+            m_ships[i].m_PlayerNumber = i + 1;
+
+        }
+    }
+
+    private void ResetShips()
+    {
+        for (int i = 0; i < m_ships.Length; i++)
+        {
+            m_ships[i].reset();
+        }
+    }
+
+    //checks to see if there is one player left
+    private bool CheckShipCount()
+    {
+        int numTanksinLevel = 0;
+
+        for (int i = 0; i < m_ships.Length; i++)
+        {
+            //if there are enough rounds to win return that ship
+            if (m_ships[i].m_PlayerInstance.activeSelf)
+                numTanksinLevel++;
+        }
+
+        if (numTanksinLevel <= 1)
+        {
+            return true;
+        }
+
+        return false;
+
+       // return numTanksinLevel <= 1;
+    }
+
+    //find the round winner
+    private ShipManager GetRoundWinner()
+    {
+        for (int i = 0; i < m_ships.Length; i++)
+        {
+            //if there are enough rounds to win return that ship
+            if (m_ships[i].m_PlayerInstance.activeSelf)
+                return m_ships[i];
+        }
+
+        return null;
+
+    }
+
+    //find the game winner
+    private ShipManager GetGameWinner()
+    {
+        // Go through all the ships
+        for (int i = 0; i < m_ships.Length; i++)
+        {
+            //if there are enough rounds to win return that ship
+            if (m_ships[i].m_NumberOfWins == m_NumberOfRoundsToWin)
+                return m_ships[i];
+        }
+
+        return null;
+    }
+
 }
+
