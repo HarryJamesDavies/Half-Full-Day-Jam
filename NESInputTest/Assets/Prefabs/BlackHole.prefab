@@ -232,6 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_rotationVector: {x: 0, y: 0, z: 1}
+  m_gravityCoefficient: 1
 --- !u!212 &21218364
 SpriteRenderer:
   m_ObjectHideFlags: 1
