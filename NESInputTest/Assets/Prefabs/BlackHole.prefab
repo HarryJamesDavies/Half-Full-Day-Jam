@@ -28,6 +28,7 @@ GameObject:
   - 4: {fileID: 412810}
   - 212: {fileID: 21226574}
   - 61: {fileID: 6185838}
+  - 114: {fileID: 11441290}
   m_Layer: 0
   m_Name: Leg 4
   m_TagString: Untagged
@@ -45,6 +46,7 @@ GameObject:
   - 4: {fileID: 490868}
   - 212: {fileID: 21250878}
   - 61: {fileID: 6129564}
+  - 114: {fileID: 11425496}
   m_Layer: 0
   m_Name: Leg 2
   m_TagString: Untagged
@@ -62,6 +64,7 @@ GameObject:
   - 4: {fileID: 492142}
   - 212: {fileID: 21289964}
   - 61: {fileID: 6134500}
+  - 114: {fileID: 11430852}
   m_Layer: 0
   m_Name: Leg 3
   m_TagString: Untagged
@@ -79,6 +82,7 @@ GameObject:
   - 4: {fileID: 405164}
   - 212: {fileID: 21251434}
   - 61: {fileID: 6188696}
+  - 114: {fileID: 11490656}
   m_Layer: 0
   m_Name: Leg 1
   m_TagString: Untagged
@@ -232,7 +236,55 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_rotationVector: {x: 0, y: 0, z: 1}
-  m_gravityCoefficient: 1
+  m_gravityCoefficient: 0.05
+--- !u!114 &11425496
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0d572fa1d5736f40bceabfc12538eee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_gravityCoefficient: 0.2
+--- !u!114 &11430852
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 190374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0d572fa1d5736f40bceabfc12538eee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_gravityCoefficient: 0.2
+--- !u!114 &11441290
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0d572fa1d5736f40bceabfc12538eee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_gravityCoefficient: 0.2
+--- !u!114 &11490656
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0d572fa1d5736f40bceabfc12538eee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_gravityCoefficient: 0.2
 --- !u!212 &21218364
 SpriteRenderer:
   m_ObjectHideFlags: 1
