@@ -21,23 +21,30 @@ public class BulletScript : MonoBehaviour {
     {
         if (m_inAir == false)
         {
-            if (m_bulletDirection == 0)
+            if (m_bulletDirection == 0) //up
             {
                 bulletForce = new Vector2(0.0f, 100.0f);
                 m_rigidBody.AddForce(bulletForce);
                 //m_rigidBody.drag = drag;
                 m_inAir = true;
             }
-            else if (m_bulletDirection == 1)
+            else if (m_bulletDirection == 1) //left
             {
                 bulletForce = new Vector2(-100.0f, 0.0f);
                 m_rigidBody.AddForce(bulletForce);
                 //m_rigidBody.drag = drag;
                 m_inAir = true;
             }
-            else if (m_bulletDirection == 2)
+            else if (m_bulletDirection == 2) //right
             {
                 bulletForce = new Vector2(100.0f, 0.0f);
+                m_rigidBody.AddForce(bulletForce);
+                //m_rigidBody.drag = drag;
+                m_inAir = true;
+            }
+            else if (m_bulletDirection == 3) //down
+            {
+                bulletForce = new Vector2(0.0f, -100.0f);
                 m_rigidBody.AddForce(bulletForce);
                 //m_rigidBody.drag = drag;
                 m_inAir = true;

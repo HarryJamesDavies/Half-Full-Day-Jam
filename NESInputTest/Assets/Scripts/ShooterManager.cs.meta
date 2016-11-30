@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 3c46fa01c7b37244ca1036ebe65b2d04
+timeCreated: 1480502467
+licenseType: Pro
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - sideShooterRef: {fileID: 162396, guid: ef82bc5155ebe0c4894d30aadef15c0e, type: 2}
+  - m_rightShooter: {instanceID: 0}
+  - m_leftShooter: {instanceID: 0}
+  - m_upShooter: {instanceID: 0}
+  - m_bottomShooter: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
