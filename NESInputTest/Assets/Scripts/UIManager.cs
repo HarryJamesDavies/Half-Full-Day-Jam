@@ -64,15 +64,15 @@ public class UIManager : MonoBehaviour {
                 }
             case StateManager.State.PLAY:
                 {
-                    if (Input.GetKeyDown(KeyCode.Space))
+                    if ((Input.GetKeyDown(KeyCode.Space)) || (Input.GetButtonDown("P1-Start(NES)")) || (Input.GetButtonDown("P2-Start(NES)")))
                     {
                         if (StateManager.m_instance.m_currentState != StateManager.State.MENU)
                         {
                             StateManager.m_instance.ChangeState(StateManager.State.MENU);
                         }
-                    } //2d, 2 player, 2 colour, 2day, pong
+                    }
 
-                    if (Input.GetKeyDown(KeyCode.P))
+                    if ((Input.GetKeyDown(KeyCode.P)) || (Input.GetButtonDown("P1-Select(NES)")) || (Input.GetButtonDown("P2-Select(NES)")))
                     {
                         StateManager.m_instance.ChangeState(StateManager.State.PAUSE);
                     }
@@ -85,7 +85,7 @@ public class UIManager : MonoBehaviour {
                 }
             case StateManager.State.PAUSE:
                 {
-                    if (Input.GetKeyDown(KeyCode.P))
+                    if ((Input.GetKeyDown(KeyCode.P)) || (Input.GetButtonDown("P1-Select(NES)")) || (Input.GetButtonDown("P2-Select(NES)")))
                     {
                         StateManager.m_instance.ChangeState(StateManager.State.PLAY);
                     }
@@ -93,7 +93,7 @@ public class UIManager : MonoBehaviour {
                 }
             case StateManager.State.GAMEOVER:
                 {
-                    if (Input.GetKeyDown(KeyCode.Return))
+                    if ((Input.GetKeyDown(KeyCode.Return)) || (Input.GetButtonDown("P1-A(NES)")))
                     {
                         StateManager.m_instance.ChangeState(StateManager.State.MENU);
                     }
