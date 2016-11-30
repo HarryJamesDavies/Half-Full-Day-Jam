@@ -3,6 +3,10 @@ using System.Collections;
 
 public class Movement : MonoBehaviour
 {
+    public int m_PlayerNumber;
+
+    public Rigidbody2D m_rb;
+
     Vector2 m_velocity = Vector2.zero;
     float m_thrust;
     float m_maxVelocity;
@@ -12,11 +16,12 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
+        m_rb = GetComponent<Rigidbody2D>();
         m_thrust = 2.0f;
         m_maxVelocity = 20.0f;
-        m_boostSpeed = m_thrust * 2;
+        m_boostSpeed = 250.0f;
         m_boostTotal = 100.0f;
-        m_rotationSpeed = 5.0f;
+        m_rotationSpeed = 25.0f;
     }
 
     void Update()
@@ -32,19 +37,34 @@ public class Movement : MonoBehaviour
             default:
                 break;
         }
+
+        if (m_boostTotal < 100.0f)
+        {
+            m_boostTotal += 1.0f;
+        }
     }
 
     void PlayerMovement(int _controller)
     {
         if (StateManager.m_instance.m_currentState == StateManager.State.PLAY)
         {
-            if (Input.GetButtonDown("P" + _controller + "-A(NES)"))
+            Vector2 m_force = (Vector2)transform.right * m_thrust * Time.deltaTime; 
+
+            m_velocity = Vector2.ClampMagnitude(m_velocity, m_maxVelocity);
+
+            if (Input.GetButton("P" + _controller + "-A(NES)"))
             {
-                transform.position += new Vector3(0.0f, 1.0f, 0.0f);
+                m_velocity += m_force;
             }
             else if (Input.GetButtonDown("P" + _controller + "-B(NES)"))
             {
-                transform.position += new Vector3(1.0f, 0.0f, 0.0f);
+                if (m_boostTotal >= 40.0f)
+                {
+                    Vector2 m_boostForce = (Vector2)transform.right * m_boostSpeed * Time.deltaTime;
+                    m_velocity += m_boostForce;
+                    m_boostTotal -= 40.0f;
+                    Debug.Log(m_boostTotal);
+                }
             }
             else if (Input.GetButtonDown("P" + _controller + "-Select(NES)"))
             {
@@ -55,17 +75,10 @@ public class Movement : MonoBehaviour
                 transform.position += new Vector3(-1.0f, 0.0f, 0.0f);
             }
 
-            float m_rotation = Input.GetAxis("P" + _controller + "-Horizontal(NES)") * m_rotationSpeed * Time.deltaTime;
+            float m_rotation = -Input.GetAxis("P" + _controller + "-Horizontal(NES)") * m_rotationSpeed * Time.deltaTime;
             transform.Rotate(0, 0, m_rotation);
 
-            Vector2 m_force = (Vector2)transform.right * Input.GetAxis("P" + _controller +"Vertical") * m_thrust * Time.deltaTime;
-
-            m_velocity += m_force;
-            m_velocity = Vector2.ClampMagnitude(m_velocity, m_maxVelocity);
-
-            transform.Translate(m_velocity * Time.deltaTime);
-
-            // transform.position += new Vector3(Input.GetAxis("P" + _controller + "-Horizontal(NES)") * 0.1f, Input.GetAxis("P" + _controller + "-Vertical(NES)") * -0.1f, 0.0f);
+            m_rb.MovePosition(m_rb.position + -m_velocity * Time.deltaTime);
         }
     }
 }
