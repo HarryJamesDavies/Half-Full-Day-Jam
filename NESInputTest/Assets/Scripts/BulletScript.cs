@@ -39,7 +39,7 @@ public class BulletScript : MonoBehaviour {
             Vector2 position = new Vector2(gameObject.transform.position.x,
            gameObject.transform.position.y);
             _collider.gameObject.GetComponent<Rigidbody2D>().AddForce(BlackHole.m_instance.GetGravityForce(position, true) * 10, ForceMode2D.Impulse);
-            Destroy(this);
+            Destroy(gameObject);
         }
         
     }
