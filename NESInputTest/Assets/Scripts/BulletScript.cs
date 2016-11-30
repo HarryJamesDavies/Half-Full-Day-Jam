@@ -13,47 +13,22 @@ public class BulletScript : MonoBehaviour {
 	void Start () {
         m_rigidBody = gameObject.GetComponent<Rigidbody2D>();
         drag = 50.0f;
-        StartCoroutine(countdownTillDeath(5.0f));
+        //StartCoroutine(countdownTillDeath(5.0f));
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (m_inAir == false)
-        {
-            if (m_bulletDirection == 0) //up
-            {
-                bulletForce = new Vector2(0.0f, 100.0f);
-                m_rigidBody.AddForce(bulletForce);
-                //m_rigidBody.drag = drag;
-                m_inAir = true;
-            }
-            else if (m_bulletDirection == 1) //left
-            {
-                bulletForce = new Vector2(-100.0f, 0.0f);
-                m_rigidBody.AddForce(bulletForce);
-                //m_rigidBody.drag = drag;
-                m_inAir = true;
-            }
-            else if (m_bulletDirection == 2) //right
-            {
-                bulletForce = new Vector2(100.0f, 0.0f);
-                m_rigidBody.AddForce(bulletForce);
-                //m_rigidBody.drag = drag;
-                m_inAir = true;
-            }
-            else if (m_bulletDirection == 3) //down
-            {
-                bulletForce = new Vector2(0.0f, -100.0f);
-                m_rigidBody.AddForce(bulletForce);
-                //m_rigidBody.drag = drag;
-                m_inAir = true;
-            }
-            else
-            {
-                //m_rigidBody.drag = drag;
-            }
+        Vector2 position = new Vector2(gameObject.transform.position.x, 
+            gameObject.transform.position.y);
 
+        if (m_inAir == false)
+        { 
+            bulletForce = BlackHole.m_instance.GetGravityForce(position, true);
+            //bulletForce = new Vector2(0.0f, 100.0f);
+            m_rigidBody.AddForce(bulletForce * 100);
+            //m_rigidBody.drag = drag;
+            m_inAir = true;
         }
     }
 
