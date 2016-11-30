@@ -5,6 +5,7 @@ using System;
 [Serializable]
 public class ShipManager
 {
+    //push the scene
     //set the spawn points
     public Transform m_SpawnPoint;
     private Movement m_Movement;
