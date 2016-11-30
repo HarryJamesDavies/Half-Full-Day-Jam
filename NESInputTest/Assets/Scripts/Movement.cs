@@ -3,9 +3,6 @@ using System.Collections;
 
 public class Movement : MonoBehaviour
 {
-    //what player are we looking at?
-    public int m_PlayerNumber;
-
     void Update()
     {
         switch (gameObject.tag)
