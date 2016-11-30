@@ -4,6 +4,10 @@ using System.Collections.Generic;
 
 public class StateManager : MonoBehaviour
 {
+	public AudioClip Clip1;
+	public AudioClip Clip2;
+	public AudioClip Clip3;
+
     public enum State
     {
         MENU = 0,
@@ -106,10 +110,16 @@ public class StateManager : MonoBehaviour
         {
             case StateManager.State.MENU:
                 {
+					AudioSource audio = GetComponent<AudioSource>();
+					audio.clip = Clip1;
+					audio.Play();
                     break;
                 }
             case StateManager.State.PLAY:
                 {
+					AudioSource audio = GetComponent<AudioSource>();
+					audio.clip = Clip2;
+					audio.Play();
                     break;
                 }
             case StateManager.State.PAUSE:
@@ -118,6 +128,9 @@ public class StateManager : MonoBehaviour
                 }
             case StateManager.State.GAMEOVER:
                 {
+					AudioSource audio = GetComponent<AudioSource>();
+					audio.clip = Clip3;
+					audio.Play();
                     break;
                 }
             case StateManager.State.RESET:
