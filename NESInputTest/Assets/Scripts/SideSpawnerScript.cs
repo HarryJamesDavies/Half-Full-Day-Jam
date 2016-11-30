@@ -9,20 +9,43 @@ public class SideSpawnerScript : MonoBehaviour {
     [SerializeField]
     int side = 0;
 
+    [SerializeField]
     int counter = 0;
+
+    [SerializeField]
+    int timeToShoot;
     
     // Use this for initialization
     void Start () {
-	
+        timeToShoot = 200;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        if(counter == 500)
+        if(counter == timeToShoot)
         {
             counter = 0;
-            SpawnBullet();
+            
+            if(timeToShoot > 70)
+            {
+                SpawnBullet();
+                timeToShoot = timeToShoot - 10;
+            }
+            else if(timeToShoot == 70)
+            {
+                timeToShoot = 60;
+                SpawnBullet();
+                SpawnBullet();
+                SpawnBullet();
+                SpawnBullet();
+            }
+            else if(timeToShoot == 60)
+            {
+                SpawnBullet();
+                //SpawnBullet();
+            }
+
         }
 
         counter++;
@@ -37,10 +60,10 @@ public class SideSpawnerScript : MonoBehaviour {
 
         if (side == 0) //top
         {
-            min = 0.0f;
-            max = 10.0f;
+            min = -20.0f;
+            max = 20.0f;
 
-            posY = 10.0f; //up or down boundary
+            posY = 12.0f; //up or down boundary
             posX = Random.Range(min, max); //right or left boundary boundary
 
             transform.position = new Vector3(posX, posY, 0.0f);
@@ -49,11 +72,11 @@ public class SideSpawnerScript : MonoBehaviour {
         }
         else if (side == 1) //left
         {
-            min = 0.0f;
-            max = -10.0f;
+            min = -10.0f;
+            max = 10.0f;
 
             posY = Random.Range(min, max); //up or down boundary
-            posX = 0.0f; //right or left boundary boundary
+            posX = -22.0f; //right or left boundary boundary
 
             transform.position = new Vector3(posX, posY, 0.0f);
 
@@ -61,10 +84,10 @@ public class SideSpawnerScript : MonoBehaviour {
         }
         else if (side == 2) //down
         {
-            min = 0.0f;
-            max = -10.0f;
+            min = -20.0f;
+            max = 20.0f;
 
-            posY = 0.0f; //up or down boundary
+            posY = -12.0f; //up or down boundary
             posX = Random.Range(min, max); //right or left boundary boundary
 
             transform.position = new Vector3(posX, posY, 0.0f);
@@ -73,11 +96,11 @@ public class SideSpawnerScript : MonoBehaviour {
         }
         else if (side == 3) //right
         {
-            min = 0.0f;
+            min = -10.0f;
             max = 10.0f;
 
             posY = Random.Range(min, max); //up or down boundary
-            posX = 10.0f; //right or left boundary boundary
+            posX = 22.0f; //right or left boundary boundary
 
             transform.position = new Vector3(posX, posY, 0.0f);
 
