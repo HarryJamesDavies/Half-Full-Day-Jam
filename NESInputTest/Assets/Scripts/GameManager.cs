@@ -158,7 +158,6 @@ public class GameManager : MonoBehaviour
                 }
             case StateManager.State.RESET:
                 {
-                    //hello
                     if(GetGameWinner() != null)
                     {
                         StateManager.m_instance.ChangeState(StateManager.State.GAMEOVER);

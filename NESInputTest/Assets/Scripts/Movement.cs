@@ -12,7 +12,6 @@ public class Movement : MonoBehaviour
     float m_boostTotal;
     float m_rotationSpeed;
 
-    //hello
 
     void Start()
     {
