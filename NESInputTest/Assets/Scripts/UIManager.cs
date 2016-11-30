@@ -40,7 +40,7 @@ public class UIManager : MonoBehaviour {
                 {
                     if (m_controls.activeSelf)
                     {
-                        if (Input.GetKeyDown(KeyCode.Return))
+                        if ((Input.GetKeyDown(KeyCode.Return)) || (Input.GetButtonDown("P1-B(NES)")))
                         {
                             m_controls.SetActive(false);
                             m_mainMenu.SetActive(true);
@@ -48,12 +48,12 @@ public class UIManager : MonoBehaviour {
                     }
                     else
                     {
-                        if (Input.GetKeyDown(KeyCode.Return))
+                        if ((Input.GetKeyDown(KeyCode.Return)) || (Input.GetButtonDown("P1-A(NES)")))
                         {
                             StateManager.m_instance.ChangeState(StateManager.State.PLAY);
                         }
 
-                        if (Input.GetKeyDown(KeyCode.Space))
+                        if ((Input.GetKeyDown(KeyCode.Space)) || (Input.GetButtonDown("P1-B(NES)")))
                         {
                             m_mainMenu.SetActive(false);
                             m_controls.SetActive(true);
@@ -70,7 +70,7 @@ public class UIManager : MonoBehaviour {
                         {
                             StateManager.m_instance.ChangeState(StateManager.State.MENU);
                         }
-                    }
+                    } //2d, 2 player, 2 colour, 2day, pong
 
                     if (Input.GetKeyDown(KeyCode.P))
                     {

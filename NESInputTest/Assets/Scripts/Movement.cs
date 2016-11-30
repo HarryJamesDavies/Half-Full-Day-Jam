@@ -27,25 +27,28 @@ public class Movement : MonoBehaviour
 
     void PlayerMovement(int _controller)
     {
-        if (Input.GetButtonDown("P" + _controller + "-A(NES)"))
+        if (StateManager.m_instance.m_currentState == StateManager.State.PLAY)
         {
-            transform.position += new Vector3(0.0f, 1.0f, 0.0f);
-            Debug.Log("Player 1 Press A");
-        }
-        else if (Input.GetButtonDown("P" + _controller + "-B(NES)"))
-        {
-            transform.position += new Vector3(1.0f, 0.0f, 0.0f);
-            Debug.Log("Player 1 Press B");
-        }
-        else if (Input.GetButtonDown("P" + _controller + "-Select(NES)"))
-        {
-            transform.position += new Vector3(0.0f, -1.0f, 0.0f);
-        }
-        else if (Input.GetButtonDown("P" + _controller + "-Start(NES)"))
-        {
-            transform.position += new Vector3(-1.0f, 0.0f, 0.0f);
-        }
+            if (Input.GetButtonDown("P" + _controller + "-A(NES)"))
+            {
+                transform.position += new Vector3(0.0f, 1.0f, 0.0f);
+                Debug.Log("Player 1 Press A");
+            }
+            else if (Input.GetButtonDown("P" + _controller + "-B(NES)"))
+            {
+                transform.position += new Vector3(1.0f, 0.0f, 0.0f);
+                Debug.Log("Player 1 Press B");
+            }
+            else if (Input.GetButtonDown("P" + _controller + "-Select(NES)"))
+            {
+                transform.position += new Vector3(0.0f, -1.0f, 0.0f);
+            }
+            else if (Input.GetButtonDown("P" + _controller + "-Start(NES)"))
+            {
+                transform.position += new Vector3(-1.0f, 0.0f, 0.0f);
+            }
 
-        transform.position += new Vector3(Input.GetAxis("P" + _controller + "-Horizontal(NES)") * 0.1f, Input.GetAxis("P" + _controller + "-Vertical(NES)") * -0.1f, 0.0f);
+            transform.position += new Vector3(Input.GetAxis("P" + _controller + "-Horizontal(NES)") * 0.1f, Input.GetAxis("P" + _controller + "-Vertical(NES)") * -0.1f, 0.0f);
+        }
     }
 }
