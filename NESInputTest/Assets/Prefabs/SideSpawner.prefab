@@ -40,12 +40,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_bulletRef: {fileID: 0}
-  m_bulletRef1: {fileID: 171926, guid: 7fbbd752869cb4641af830c62f4f9326, type: 2}
-  m_bulletRef2: {fileID: 117750, guid: 5d441719138842846bc27bcb78c6c923, type: 2}
-  m_bulletRef3: {fileID: 117150, guid: 9184a6f667473b14fbdfbf1e4471d7f9, type: 2}
+  m_commonAsteriods:
+  - {fileID: 171926, guid: 7fbbd752869cb4641af830c62f4f9326, type: 2}
+  - {fileID: 117750, guid: 5d441719138842846bc27bcb78c6c923, type: 2}
+  m_rareAsteriods:
+  - {fileID: 117150, guid: 9184a6f667473b14fbdfbf1e4471d7f9, type: 2}
+  - {fileID: 173482, guid: 47fb663a59597a9469b58d7994844a96, type: 2}
   side: 0
   counter: 0
   timeToShoot: 0
+  m_rarePercentage: 5
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
