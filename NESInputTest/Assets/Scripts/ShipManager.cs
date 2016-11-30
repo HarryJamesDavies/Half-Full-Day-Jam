@@ -25,7 +25,7 @@ public class ShipManager
         m_Movement = m_PlayerInstance.GetComponent<Movement>();
         //m_Movement.m_PlayerNumber = m_PlayerNumber;
     }
-
+    //hello
     public void reset()
     {
         //reset the respective ships to thier spawn locations
