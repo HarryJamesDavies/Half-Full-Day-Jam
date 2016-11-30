@@ -22,7 +22,7 @@ public class ShipManager
 	void SetUp ()
     {
         m_Movement = m_PlayerInstance.GetComponent<Movement>();
-        m_Movement.m_PlayerNumber = m_PlayerNumber;
+        //m_Movement.m_PlayerNumber = m_PlayerNumber;
     }
 
     public void enableControl()

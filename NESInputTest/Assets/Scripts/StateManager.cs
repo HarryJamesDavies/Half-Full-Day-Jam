@@ -10,6 +10,7 @@ public class StateManager : MonoBehaviour
         PLAY = 1,
         PAUSE = 2,
         GAMEOVER = 3,
+        RESET = 4,
         Count
     };
 
@@ -87,6 +88,10 @@ public class StateManager : MonoBehaviour
                 {
                     break;
                 }
+            case StateManager.State.RESET:
+                {
+                    break;
+                }
             default:
                 {
                     break;
@@ -115,6 +120,10 @@ public class StateManager : MonoBehaviour
                 {
                     break;
                 }
+            case StateManager.State.RESET:
+                {
+                    break;
+                }
             default:
                 {
                     break;
@@ -139,6 +148,10 @@ public class StateManager : MonoBehaviour
                     break;
                 }
             case StateManager.State.GAMEOVER:
+                {
+                    break;
+                }
+            case StateManager.State.RESET:
                 {
                     break;
                 }
