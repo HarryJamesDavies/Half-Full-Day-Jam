@@ -7,18 +7,16 @@ public class Movement : MonoBehaviour
 
     public Rigidbody2D m_rb;
 
-    Vector2 m_velocity = Vector2.zero;
     float m_thrust;
-    float m_maxVelocity;
     float m_boostSpeed;
     float m_boostTotal;
     float m_rotationSpeed;
+
 
     void Start()
     {
         m_rb = GetComponent<Rigidbody2D>();
         m_thrust = 5.0f;
-        m_maxVelocity = 20.0f;
         m_boostSpeed = 400.0f;
         m_boostTotal = 100.0f;
         m_rotationSpeed = 50.0f;
@@ -61,8 +59,6 @@ public class Movement : MonoBehaviour
         {
             Vector2 m_force = (Vector2)transform.right * m_thrust * Time.deltaTime; 
 
-            m_velocity = Vector2.ClampMagnitude(m_velocity, m_maxVelocity);
-
             if (Input.GetButton("P" + _controller + "-A(NES)"))
             {
                 gameObject.GetComponent<Rigidbody2D>().AddForce(m_force, ForceMode2D.Impulse);
@@ -89,5 +85,10 @@ public class Movement : MonoBehaviour
             float m_rotation = -Input.GetAxis("P" + _controller + "-Horizontal(NES)") * m_rotationSpeed * Time.deltaTime;
             transform.Rotate(0, 0, m_rotation);
         }
+    }
+
+    public void Reset()
+    {
+        m_rb.velocity = Vector2.zero;
     }
 }

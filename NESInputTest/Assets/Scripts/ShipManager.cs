@@ -7,6 +7,7 @@ public class ShipManager
 {
     //set the spawn points
     public Transform m_SpawnPoint;
+    public bool m_died = false;
     private Movement m_Movement;
 
     //what player are we looking at
@@ -15,7 +16,7 @@ public class ShipManager
     [HideInInspector]public GameObject m_PlayerInstance;
 
     //record how many wins each player has
-    [HideInInspector]public int m_NumberOfWins;
+    [HideInInspector]public int m_NumberOfWins = 0;
 
 
 	// Use this for initialization
@@ -24,27 +25,16 @@ public class ShipManager
         m_Movement = m_PlayerInstance.GetComponent<Movement>();
         //m_Movement.m_PlayerNumber = m_PlayerNumber;
     }
-
-    public void enableControl()
-    {
-        //enable the tank movement
-        m_Movement.enabled = true;
-      
-    }
-
-    public void disableControl()
-    {
-        //disable the tank movement
-        m_Movement.enabled = false;
-
-    }
-
+    
     public void reset()
     {
         //reset the respective ships to thier spawn locations
         m_PlayerInstance.transform.position = m_SpawnPoint.position;
         m_PlayerInstance.transform.rotation = m_SpawnPoint.rotation;
+
+        m_PlayerInstance.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        m_died = false;
+
+        Debug.Log(m_NumberOfWins);
     }
-
-
 }
