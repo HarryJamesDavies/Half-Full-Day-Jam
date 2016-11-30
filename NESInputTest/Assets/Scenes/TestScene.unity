@@ -325,6 +325,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!1 &575327096
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 575327097}
+  m_Layer: 0
+  m_Name: SpawnPoint1
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &575327097
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 575327096}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -13.29, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
 --- !u!1001 &734347143
 Prefab:
   m_ObjectHideFlags: 0
@@ -938,6 +965,33 @@ MonoBehaviour:
   m_dirtyFlag: 0
   m_currentState: 0
   m_prevState: 0
+--- !u!1 &1458486010
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1458486011}
+  m_Layer: 0
+  m_Name: SpawnPoint2
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1458486011
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1458486010}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12.22, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
 --- !u!1 &1613041936
 GameObject:
   m_ObjectHideFlags: 0
@@ -1432,6 +1486,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f216166a702ad0745a8d7b5c6f0f785b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_ships:
+  - m_SpawnPoint: {fileID: 575327097}
+    m_PlayerNumber: 0
+    m_PlayerInstance: {fileID: 0}
+    m_NumberOfWins: 0
+  - m_SpawnPoint: {fileID: 1458486011}
+    m_PlayerNumber: 0
+    m_PlayerInstance: {fileID: 0}
+    m_NumberOfWins: 0
+  m_ShipPrefab: {fileID: 0}
+  m_NumberOfRoundsToWin: 5
+  m_RoundNumber: 0
   m_scoreText: {fileID: 1008722241}
   m_timeText: {fileID: 1613041938}
   m_maxTime: 600

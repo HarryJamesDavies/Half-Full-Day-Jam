@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public GameObject m_ShipPrefab;
 
     public int m_NumberOfRoundsToWin = 5;
+    public int m_RoundNumber;
 
     //used for delays in between rounds
     private WaitForSeconds m_roundStart;
@@ -76,10 +77,17 @@ public class GameManager : MonoBehaviour
                     UpdateTime();
                     UpdateScore();
 
-                    if (!m_checkStop)
+                    EnableShips();
+
+                    if (CheckShipCount())
                     {
-                        CheckGameOver();
+                        StateManager.m_instance.ChangeState(StateManager.State.RESET);
                     }
+
+                    //if (!m_checkStop)
+                    //{
+                    //    CheckGameOver();
+                    //}
                     break;
                 }
             case StateManager.State.PAUSE:
@@ -87,6 +95,10 @@ public class GameManager : MonoBehaviour
                     break;
                 }
             case StateManager.State.GAMEOVER:
+                {
+                    break;
+                }
+            case StateManager.State.RESET:
                 {
                     break;
                 }
@@ -111,7 +123,13 @@ public class GameManager : MonoBehaviour
                     if (StateManager.m_instance.m_prevState != StateManager.State.PAUSE)
                     {
                         ResetData();
+                        ResetShips();
+                        DisableShips();
+
+                        m_RoundNumber++;
                     }
+
+
                     m_checkStop = false;
                     break;
                 }
@@ -122,6 +140,14 @@ public class GameManager : MonoBehaviour
                 }
             case StateManager.State.GAMEOVER:
                 {
+                    break;
+                }
+            case StateManager.State.RESET:
+                {
+                    if(GetGameWinner() != null)
+                    {
+                        StateManager.m_instance.ChangeState(StateManager.State.GAMEOVER);
+                    }
                     break;
                 }
             default:
@@ -143,6 +169,9 @@ public class GameManager : MonoBehaviour
                 }
             case StateManager.State.PLAY:
                 {
+                    DisableShips();
+
+                    m_Roundwinner = GetRoundWinner();
                     break;
                 }
             case StateManager.State.PAUSE:
@@ -151,6 +180,10 @@ public class GameManager : MonoBehaviour
                     break;
                 }
             case StateManager.State.GAMEOVER:
+                {
+                    break;
+                }
+            case StateManager.State.RESET:
                 {
                     break;
                 }
@@ -296,6 +329,38 @@ public class GameManager : MonoBehaviour
 
         return null;
     }
+
+    private IEnumerator StartNewRound()
+    {
+        ResetShips();
+        DisableShips();
+
+        m_RoundNumber++;
+
+        yield return m_roundStart;
+    }
+
+    private IEnumerator NewRoundPlaying()
+    {
+        EnableShips();
+
+        if(!CheckShipCount())
+        {
+            yield return null;
+        }
+
+    }
+
+    private IEnumerator NewRoundEnded()
+    {
+        DisableShips();
+
+        m_Roundwinner = GetRoundWinner();
+
+        yield return m_roundEnd;
+
+    }
+
 
 }
 
