@@ -35,15 +35,23 @@ public class BlackHole : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player1" || collision.gameObject.tag == "Player2")
+        if(collision.gameObject.tag == "Player1")
         {
 			AudioSource audio = GetComponent<AudioSource>();
 			audio.clip = BlackHoleClip2;
 			audio.Play();
-            StateManager.m_instance.ChangeState(StateManager.State.GAMEOVER);           
+            StateManager.m_instance.ChangeState(StateManager.State.GAMEOVER);
+            GameManager.m_instance.m_ships[0].m_died = true;
         }
-
-        Destroy(collision.gameObject);
+        else if (collision.gameObject.tag == "Player2")
+        {
+            StateManager.m_instance.ChangeState(StateManager.State.GAMEOVER);
+            GameManager.m_instance.m_ships[1].m_died = true;
+        }
+        else
+        {
+            Destroy(collision.gameObject);
+        }
     }
 
     public Vector3 GetGravityVector(Vector3 _objectPosition, float _delta = 0.0f)

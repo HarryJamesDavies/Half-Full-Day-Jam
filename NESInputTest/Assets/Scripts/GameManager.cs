@@ -4,8 +4,11 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager m_instance;
+
     public ShipManager[] m_ships;
-    public GameObject m_ShipPrefab;
+    public GameObject m_p1Prefab;
+    public GameObject m_p2Prefab;
 
     public int m_NumberOfRoundsToWin = 5;
     public int m_RoundNumber;
@@ -44,6 +47,15 @@ public class GameManager : MonoBehaviour
 
         SpawnShips();
         m_pauseLength = 0.0f;
+
+        if (m_instance != null)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            m_instance = this;
+        }
     }
 
     // Update is called once per frame
@@ -77,12 +89,12 @@ public class GameManager : MonoBehaviour
                     UpdateTime();
                     UpdateScore();
 
-                    EnableShips();
+                    //EnableShips();
 
-                    if (CheckShipCount())
-                    {
-                        StateManager.m_instance.ChangeState(StateManager.State.RESET);
-                    }
+                    //if (CheckShipCount())
+                    //{
+                    //    StateManager.m_instance.ChangeState(StateManager.State.RESET);
+                    //}
 
                     //if (!m_checkStop)
                     //{
@@ -100,6 +112,7 @@ public class GameManager : MonoBehaviour
                 }
             case StateManager.State.RESET:
                 {
+                    StateManager.m_instance.ChangeState(StateManager.State.PLAY);
                     break;
                 }
             default:
@@ -124,7 +137,7 @@ public class GameManager : MonoBehaviour
                     {
                         ResetData();
                         ResetShips();
-                        DisableShips();
+                        //DisableShips();
 
                         m_RoundNumber++;
                     }
@@ -140,6 +153,7 @@ public class GameManager : MonoBehaviour
                 }
             case StateManager.State.GAMEOVER:
                 {
+                    m_Roundwinner.m_NumberOfWins = 0;
                     break;
                 }
             case StateManager.State.RESET:
@@ -169,9 +183,17 @@ public class GameManager : MonoBehaviour
                 }
             case StateManager.State.PLAY:
                 {
-                    DisableShips();
+                    m_Roundwinner = null;
 
                     m_Roundwinner = GetRoundWinner();
+
+                    if (m_Roundwinner != null)
+                    {
+                        m_Roundwinner.m_NumberOfWins++;
+                        Debug.Log(m_Roundwinner.m_NumberOfWins);
+                    }
+                    
+                    m_GameWinner = GetGameWinner();
                     break;
                 }
             case StateManager.State.PAUSE:
@@ -240,36 +262,32 @@ public class GameManager : MonoBehaviour
     //============================================== MATTS WORK ==============================================//
     //========================================================================================================//
 
-    //disable ship control
-    private void DisableShips()
-    {
-        for (int i = 0; i < m_ships.Length; i++)
-        {
-            m_ships[i].disableControl();
-        }
-    }
+    ////disable ship control
+    //private void DisableShips()
+    //{
+    //    for (int i = 0; i < m_ships.Length; i++)
+    //    {
+    //        m_ships[i].disableControl();
+    //    }
+    //}
     
-    //enable ship control
-    private void EnableShips()
-    {
-        for (int i = 0; i < m_ships.Length; i++)
-        {
-            m_ships[i].enableControl();
-        }
-    }
+    ////enable ship control
+    //private void EnableShips()
+    //{
+    //    for (int i = 0; i < m_ships.Length; i++)
+    //    {
+    //        m_ships[i].enableControl();
+    //    }
+    //}
 
     //spawn ships at the spawn locations
     private void SpawnShips()
-    {
-        for(int i = 0; i < m_ships.Length;i++)
-        {
-            m_ships[i].m_PlayerInstance = 
-            (GameObject)Instantiate(m_ShipPrefab, m_ships[i].m_SpawnPoint.position, m_ships[i].m_SpawnPoint.rotation);
+    { 
+        m_ships[0].m_PlayerInstance =
+            (GameObject)Instantiate(m_p1Prefab, m_ships[0].m_SpawnPoint.position, m_ships[0].m_SpawnPoint.rotation);
 
-            //sync the correct player number
-            m_ships[i].m_PlayerNumber = i + 1;
-
-        }
+        m_ships[1].m_PlayerInstance =
+        (GameObject)Instantiate(m_p2Prefab, m_ships[1].m_SpawnPoint.position, m_ships[1].m_SpawnPoint.rotation);
     }
 
     private void ResetShips()
@@ -308,12 +326,13 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < m_ships.Length; i++)
         {
             //if there are enough rounds to win return that ship
-            if (m_ships[i].m_PlayerInstance.activeSelf)
+            if (!m_ships[i].m_died)
+            {
                 return m_ships[i];
+            }
         }
 
         return null;
-
     }
 
     //find the game winner
@@ -324,7 +343,9 @@ public class GameManager : MonoBehaviour
         {
             //if there are enough rounds to win return that ship
             if (m_ships[i].m_NumberOfWins == m_NumberOfRoundsToWin)
+            {
                 return m_ships[i];
+            }
         }
 
         return null;
@@ -333,7 +354,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator StartNewRound()
     {
         ResetShips();
-        DisableShips();
+        //DisableShips();
 
         m_RoundNumber++;
 
@@ -342,7 +363,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator NewRoundPlaying()
     {
-        EnableShips();
+        //EnableShips();
 
         if(!CheckShipCount())
         {
@@ -353,9 +374,17 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator NewRoundEnded()
     {
-        DisableShips();
+        //DisableShips();
+        m_Roundwinner = null;
 
         m_Roundwinner = GetRoundWinner();
+
+        if (m_Roundwinner != null)
+        {
+            m_Roundwinner.m_NumberOfWins++;
+        }
+
+        m_GameWinner = GetGameWinner();
 
         yield return m_roundEnd;
 
