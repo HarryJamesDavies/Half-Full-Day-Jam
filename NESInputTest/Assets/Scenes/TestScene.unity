@@ -197,6 +197,33 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 170762535}
+--- !u!1 &416850756
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 416850757}
+  m_Layer: 0
+  m_Name: SpawnPoint1
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &416850757
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 416850756}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.68, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
 --- !u!1 &530935598
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,6 +970,33 @@ MonoBehaviour:
   m_dirtyFlag: 0
   m_currentState: 0
   m_prevState: 0
+--- !u!1 &1418922551
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1418922552}
+  m_Layer: 0
+  m_Name: SpawnPoint2
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1418922552
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1418922551}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.83, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
 --- !u!1 &1613041936
 GameObject:
   m_ObjectHideFlags: 0
@@ -1352,6 +1406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0978771e3262c54b876239182dbb1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_PlayerNumber: 0
 --- !u!61 &1692547189
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1522,6 +1577,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f216166a702ad0745a8d7b5c6f0f785b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_ships:
+  - m_SpawnPoint: {fileID: 416850757}
+    m_PlayerNumber: 0
+    m_PlayerInstance: {fileID: 0}
+    m_NumberOfWins: 0
+  - m_SpawnPoint: {fileID: 1418922552}
+    m_PlayerNumber: 0
+    m_PlayerInstance: {fileID: 0}
+    m_NumberOfWins: 0
+  m_ShipPrefab: {fileID: 0}
+  m_NumberOfRoundsToWin: 5
   m_scoreText: {fileID: 1008722241}
   m_timeText: {fileID: 1613041938}
   m_maxTime: 600
@@ -1628,6 +1694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0978771e3262c54b876239182dbb1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_PlayerNumber: 0
 --- !u!61 &1990756144
 BoxCollider2D:
   m_ObjectHideFlags: 0
