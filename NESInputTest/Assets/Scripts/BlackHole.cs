@@ -37,30 +37,25 @@ public class BlackHole : MonoBehaviour {
         Destroy(collision.gameObject);
     }
 
-    public Vector3 GetGravityForce(Vector3 _objectPosition, bool _justDirection)
+    public Vector3 GetGravityForce(Vector3 _objectPosition, float _delta = 0.0f)
     {
-        Vector3 direction = gameObject.transform.position - _objectPosition;
-        direction.Normalize();
-
-        if(_justDirection)
+        if (_delta == 0.0f)
         {
-            return direction;
+            return -Vector2.MoveTowards(gameObject.transform.position, _objectPosition, m_gravityCoefficient);
         }
 
-        return direction * m_gravityCoefficient;
+        return -Vector2.MoveTowards(gameObject.transform.position, _objectPosition, _delta);
     }
 
-    public Vector2 GetGravityForce(Vector2 _objectPosition, bool _justDirection)
-    {
+    public Vector2 GetGravityForce(Vector2 _objectPosition, float _delta = 0.0f)
+    { 
         Vector2 Position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-        Vector2 direction = Position - _objectPosition;
-        direction.Normalize();
 
-        if (_justDirection)
+        if (_delta == 0.0f)
         {
-            return direction;
+            return -Vector2.MoveTowards(Position, _objectPosition, m_gravityCoefficient);
         }
-
-        return direction * m_gravityCoefficient;
+  
+        return -Vector2.MoveTowards(Position, _objectPosition, _delta);
     }
 }
