@@ -113,6 +113,7 @@ public class UIManager : MonoBehaviour {
         {
             case StateManager.State.MENU:
                 {
+                    m_HUD.SetActive(false);
                     m_mainMenu.SetActive(true);
                     break;
                 }

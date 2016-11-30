@@ -26,6 +26,7 @@ public class Movement : MonoBehaviour
     {
         if (StateManager.m_instance.m_currentState == StateManager.State.PLAY)
         {
+            m_rb.constraints = RigidbodyConstraints2D.None;
             switch (gameObject.tag)
             {
                 case "Player1":
@@ -49,6 +50,10 @@ public class Movement : MonoBehaviour
 
             Vector2 position = new Vector2(transform.position.x, transform.position.y);
             gameObject.GetComponent<Rigidbody2D>().AddForce(BlackHole.m_instance.GetGravityForce(position, true), ForceMode2D.Force);
+        }
+        else if (StateManager.m_instance.m_currentState == StateManager.State.PAUSE || StateManager.m_instance.m_currentState == StateManager.State.MENU)
+        {
+            m_rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
 
     }

@@ -80,6 +80,9 @@ public class GameManager : MonoBehaviour
     //Behaviour to perform per frame based on state
     void StateUpdate()
     {
+        m_p1Score = m_ships[0].m_NumberOfWins;
+        m_p2Score = m_ships[1].m_NumberOfWins;
+
         switch (StateManager.m_instance.m_currentState)
         {
             case StateManager.State.MENU:
@@ -90,18 +93,6 @@ public class GameManager : MonoBehaviour
                 {
                     UpdateTime();
                     UpdateScore();
-
-                    //EnableShips();
-
-                    //if (CheckShipCount())
-                    //{
-                    //    StateManager.m_instance.ChangeState(StateManager.State.RESET);
-                    //}
-
-                    //if (!m_checkStop)
-                    //{
-                    //    CheckGameOver();
-                    //}
                     break;
                 }
             case StateManager.State.PAUSE:
@@ -139,11 +130,9 @@ public class GameManager : MonoBehaviour
                     {
                         ResetData();
                         ResetShips();
-                        //DisableShips();
 
                         m_RoundNumber++;
                     }
-
 
                     m_checkStop = false;
                     break;
@@ -155,6 +144,7 @@ public class GameManager : MonoBehaviour
                 }
             case StateManager.State.GAMEOVER:
                 {
+                    UpdateScore();
                     m_Roundwinner.m_NumberOfWins = 0;
                     break;
                 }
@@ -194,11 +184,8 @@ public class GameManager : MonoBehaviour
                         m_Roundwinner.m_NumberOfWins++;
                         Debug.Log(m_Roundwinner.m_NumberOfWins);
                     }
-                    
-                    m_GameWinner = GetGameWinner();
 
-                    m_p1Score = m_ships[0].m_NumberOfWins;
-                    m_p2Score = m_ships[1].m_NumberOfWins;
+                    m_GameWinner = GetGameWinner();
                     break;
                 }
             case StateManager.State.PAUSE:
@@ -208,6 +195,10 @@ public class GameManager : MonoBehaviour
                 }
             case StateManager.State.GAMEOVER:
                 {
+                    for (int i = 0; i < m_ships.Length; i++)
+                    {
+                        m_ships[i].reset();
+                    }
                     break;
                 }
             case StateManager.State.RESET:
@@ -257,8 +248,8 @@ public class GameManager : MonoBehaviour
         m_playTime = 0.0f;
         m_pauseLength = 0.0f;
 
-        //m_p1Score = 0.0f;
-        //m_p2Score = 0.0f;
+        m_p1Score = 0.0f;
+        m_p2Score = 0.0f;
     }
 
     //============================================== MATTS WORK ==============================================//
