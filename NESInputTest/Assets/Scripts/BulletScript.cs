@@ -24,12 +24,24 @@ public class BulletScript : MonoBehaviour {
 
         if (m_inAir == false)
         { 
-            bulletForce = BlackHole.m_instance.GetGravityForce(position, true) * 100.0f;
+            bulletForce = BlackHole.m_instance.GetGravityForce(position, true) * 300.0f;
             //bulletForce = new Vector2(0.0f, 100.0f);
             m_rigidBody.AddForce(bulletForce);
             //m_rigidBody.drag = drag;
             m_inAir = true;
         }
+    }
+
+    void OnCollisionEnter2D(Collision2D _collider)
+    {
+        if(_collider.gameObject.tag == "Player1" || _collider.gameObject.tag == "Player2")
+        {
+            Vector2 position = new Vector2(gameObject.transform.position.x,
+           gameObject.transform.position.y);
+            _collider.gameObject.GetComponent<Rigidbody2D>().AddForce(BlackHole.m_instance.GetGravityForce(position, true) * 10, ForceMode2D.Impulse);
+            Destroy(this);
+        }
+        
     }
 
     
