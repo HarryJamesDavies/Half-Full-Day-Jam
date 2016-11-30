@@ -9,6 +9,7 @@ public class BlackHole : MonoBehaviour {
     public float m_gravityCoefficient;
 
 	public AudioClip BlackHoleClip;
+	public AudioClip BlackHoleClip2;
 
 	// Use this for initialization
 	void Start ()
@@ -36,6 +37,9 @@ public class BlackHole : MonoBehaviour {
     {
         if(collision.gameObject.tag == "Player1" || collision.gameObject.tag == "Player2")
         {
+			AudioSource audio = GetComponent<AudioSource>();
+			audio.clip = BlackHoleClip2;
+			audio.Play();
             StateManager.m_instance.ChangeState(StateManager.State.GAMEOVER);           
         }
 
