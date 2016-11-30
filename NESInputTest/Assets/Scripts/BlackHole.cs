@@ -37,15 +37,15 @@ public class BlackHole : MonoBehaviour {
     {
         if(collision.gameObject.tag == "Player1")
         {
-			AudioSource audio = GetComponent<AudioSource>();
-			audio.clip = BlackHoleClip2;
-			audio.Play();
-            StateManager.m_instance.ChangeState(StateManager.State.GAMEOVER);
+			//AudioSource audio = GetComponent<AudioSource>();
+			//audio.clip = BlackHoleClip2;
+			//audio.Play();
+            StateManager.m_instance.ChangeState(StateManager.State.RESET);
             GameManager.m_instance.m_ships[0].m_died = true;
         }
         else if (collision.gameObject.tag == "Player2")
         {
-            StateManager.m_instance.ChangeState(StateManager.State.GAMEOVER);
+            StateManager.m_instance.ChangeState(StateManager.State.RESET);
             GameManager.m_instance.m_ships[1].m_died = true;
         }
         else
