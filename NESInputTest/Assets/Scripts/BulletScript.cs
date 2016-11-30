@@ -8,6 +8,7 @@ public class BulletScript : MonoBehaviour {
     Rigidbody2D m_rigidBody;
     Vector2 bulletForce;
     float drag;
+    public Vector3 m_rotationVector;
 
 	// Use this for initialization
 	void Start () {
@@ -21,6 +22,8 @@ public class BulletScript : MonoBehaviour {
     {
         Vector2 position = new Vector2(gameObject.transform.position.x, 
             gameObject.transform.position.y);
+
+        transform.Rotate(m_rotationVector);
 
         if (m_inAir == false)
         { 
