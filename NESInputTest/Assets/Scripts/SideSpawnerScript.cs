@@ -23,32 +23,39 @@ public class SideSpawnerScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if(counter == timeToShoot)
+        if (StateManager.m_instance.m_currentState == StateManager.State.PAUSE)
         {
-            counter = 0;
-            
-            if(timeToShoot > 70)
-            {
-                SpawnBullet();
-                timeToShoot = timeToShoot - 10;
-            }
-            else if(timeToShoot == 70)
-            {
-                timeToShoot = 60;
-                SpawnBullet();
-                SpawnBullet();
-                SpawnBullet();
-                SpawnBullet();
-            }
-            else if(timeToShoot == 60)
-            {
-                SpawnBullet();
-                //SpawnBullet();
-            }
 
         }
+        else
+        {
+            if (counter == timeToShoot)
+            {
+                counter = 0;
 
-        counter++;
+                if (timeToShoot > 70)
+                {
+                    SpawnBullet();
+                    timeToShoot = timeToShoot - 10;
+                }
+                else if (timeToShoot == 70)
+                {
+                    timeToShoot = 60;
+                    SpawnBullet();
+                    SpawnBullet();
+                    SpawnBullet();
+                    SpawnBullet();
+                }
+                else if (timeToShoot == 60)
+                {
+                    SpawnBullet();
+                    //SpawnBullet();
+                }
+
+            }
+
+            counter++;
+        }
 	}
 
     void SpawnBullet()
