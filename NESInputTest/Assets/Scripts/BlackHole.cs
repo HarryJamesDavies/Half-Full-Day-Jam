@@ -37,7 +37,7 @@ public class BlackHole : MonoBehaviour {
         Destroy(collision.gameObject);
     }
 
-    public Vector3 GetGravityForce(Vector3 _objectPosition, float _delta = 0.0f)
+    public Vector3 GetGravityVector(Vector3 _objectPosition, float _delta = 0.0f)
     {
         if (_delta == 0.0f)
         {
@@ -47,7 +47,7 @@ public class BlackHole : MonoBehaviour {
         return -Vector2.MoveTowards(gameObject.transform.position, _objectPosition, _delta);
     }
 
-    public Vector2 GetGravityForce(Vector2 _objectPosition, float _delta = 0.0f)
+    public Vector2 GetGravityVector(Vector2 _objectPosition, float _delta = 0.0f)
     { 
         Vector2 Position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
 
@@ -57,5 +57,32 @@ public class BlackHole : MonoBehaviour {
         }
   
         return -Vector2.MoveTowards(Position, _objectPosition, _delta);
+    }
+
+    public Vector3 GetGravityForce(Vector3 _objectPosition, bool _direction)
+    {
+        Vector3 direction = transform.position - _objectPosition;
+        direction.Normalize();
+
+        if (_direction)
+        {
+            return direction;
+        }
+
+        return direction * m_gravityCoefficient;
+    }
+
+    public Vector2 GetGravityForce(Vector2 _objectPosition, bool _direction)
+    {
+        Vector2 position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+        Vector2 direction = position - _objectPosition;
+        direction.Normalize();
+
+        if (_direction)
+        {
+            return direction;
+        }
+
+        return direction * m_gravityCoefficient;
     }
 }

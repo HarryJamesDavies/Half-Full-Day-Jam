@@ -24,9 +24,9 @@ public class BulletScript : MonoBehaviour {
 
         if (m_inAir == false)
         { 
-            bulletForce = BlackHole.m_instance.GetGravityForce(position, true);
+            bulletForce = BlackHole.m_instance.GetGravityForce(position, true) * 100.0f;
             //bulletForce = new Vector2(0.0f, 100.0f);
-            m_rigidBody.AddForce(bulletForce * 100);
+            m_rigidBody.AddForce(bulletForce);
             //m_rigidBody.drag = drag;
             m_inAir = true;
         }
