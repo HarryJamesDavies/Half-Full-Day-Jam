@@ -29,12 +29,23 @@ public class BlackHole : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player1" || collision.gameObject.tag == "Player2")
+        if (StateManager.m_instance.m_currentState == StateManager.State.PLAY)
         {
-            StateManager.m_instance.ChangeState(StateManager.State.GAMEOVER);           
+            if (collision.gameObject.tag == "Player1")
+            {
+                StateManager.m_instance.ChangeState(StateManager.State.RESET);
+                GameManager.m_instance.m_ships[0].m_died = true;
+            }
+            else if (collision.gameObject.tag == "Player2")
+            {
+                StateManager.m_instance.ChangeState(StateManager.State.RESET);
+                GameManager.m_instance.m_ships[1].m_died = true;
+            }
+            else
+            {
+                Destroy(collision.gameObject);
+            }
         }
-
-        Destroy(collision.gameObject);
     }
 
     public Vector3 GetGravityVector(Vector3 _objectPosition, float _delta = 0.0f)
