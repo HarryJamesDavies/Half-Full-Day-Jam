@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
 
     public Text m_p1ScoreText;
     public Text m_p2ScoreText;
+    public Text m_p1BoostText;
+    public Text m_p2BoostText;
     public Text m_timeText;
 
     public float m_maxTime;

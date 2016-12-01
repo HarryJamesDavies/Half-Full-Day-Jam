@@ -33,6 +33,7 @@ public class ShipManager
         m_PlayerInstance.transform.rotation = m_SpawnPoint.rotation;
 
         m_PlayerInstance.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        m_PlayerInstance.GetComponent<Rigidbody2D>().angularVelocity = 0.0f;
         m_died = false;
 
         Debug.Log(m_NumberOfWins);
