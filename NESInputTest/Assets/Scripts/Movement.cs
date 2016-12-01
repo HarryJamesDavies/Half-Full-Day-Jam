@@ -91,9 +91,4 @@ public class Movement : MonoBehaviour
             transform.Rotate(0, 0, m_rotation);
         }
     }
-
-    public void Reset()
-    {
-        m_rb.velocity = Vector2.zero;
-    }
 }
