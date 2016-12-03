@@ -79,6 +79,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
         //Check if the state has changed
         if (StateManager.m_instance.m_dirtyFlag)
         {
@@ -232,7 +237,7 @@ public class GameManager : MonoBehaviour
                 {
                     for (int i = 0; i < m_ships.Length; i++)
                     {
-                        m_ships[i].reset();
+                        Destroy(m_ships[i].m_PlayerInstance);
                     }
                     break;
                 }
