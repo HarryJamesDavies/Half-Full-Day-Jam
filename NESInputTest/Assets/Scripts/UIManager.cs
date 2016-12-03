@@ -8,7 +8,11 @@ public class UIManager : MonoBehaviour {
     public GameObject m_mainMenu;
     public GameObject m_controls;
     public GameObject m_HUD;
+    public GameObject m_p3Score;
+    public GameObject m_p4Score;
     public GameObject m_gameOver;
+
+    public Text m_numberOfPlayers;
 
 	// Use this for initialization
 	void Start () {
@@ -58,9 +62,31 @@ public class UIManager : MonoBehaviour {
                             m_mainMenu.SetActive(false);
                             m_controls.SetActive(true);
                         }
+
+                        if (Input.GetButtonDown("P1-Start(NES)"))
+                        {
+                            if (GameManager.m_instance.m_twoPlayers)
+                            {
+                                GameManager.m_instance.m_twoPlayers = false;
+                                GameManager.m_instance.m_fourPlayers = true;
+                            }
+                            else if (GameManager.m_instance.m_fourPlayers)
+                            {
+                                GameManager.m_instance.m_twoPlayers = true;
+                                GameManager.m_instance.m_fourPlayers = false;
+                            }
+                        }
                     }
 
-                    break;
+                    if (GameManager.m_instance.m_fourPlayers == true)
+                    {
+                        m_numberOfPlayers.text = "Four Player";
+                    }
+                    else
+                    {
+                        m_numberOfPlayers.text = "Two Player";
+                    }
+                        break;
                 }
             case StateManager.State.PLAY:
                 {
@@ -120,6 +146,16 @@ public class UIManager : MonoBehaviour {
             case StateManager.State.PLAY:
                 {
                     m_HUD.SetActive(true);
+                    if (GameManager.m_instance.m_fourPlayers == true)
+                    {
+                        m_p3Score.SetActive(true);
+                        m_p4Score.SetActive(true);
+                    }
+                    else
+                    {
+                        m_p3Score.SetActive(false);
+                        m_p4Score.SetActive(false);
+                    }
                     break;
                 }
             case StateManager.State.PAUSE:

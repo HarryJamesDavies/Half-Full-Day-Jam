@@ -42,7 +42,10 @@ public class BlackHole : MonoBehaviour {
                 //AudioSource audio = GetComponent<AudioSource>();
                 //audio.clip = BlackHoleClip2;
                 //audio.Play();
-                StateManager.m_instance.ChangeState(StateManager.State.RESET);
+                if (!GameManager.m_instance.m_ships[0].m_died)
+                {
+                    GameManager.m_instance.m_dead++;
+                }
                 GameManager.m_instance.m_ships[0].m_died = true;
             }
         }
@@ -50,8 +53,34 @@ public class BlackHole : MonoBehaviour {
         {
             if (StateManager.m_instance.m_currentState == StateManager.State.PLAY)
             {
-                StateManager.m_instance.ChangeState(StateManager.State.RESET);
+                if (!GameManager.m_instance.m_ships[1].m_died)
+                {
+                    GameManager.m_instance.m_dead++;
+                }
                 GameManager.m_instance.m_ships[1].m_died = true;
+                //StateManager.m_instance.ChangeState(StateManager.State.RESET);
+            }
+        }
+        else if (collision.gameObject.tag == "Player3")
+        {
+            if (StateManager.m_instance.m_currentState == StateManager.State.PLAY)
+            {
+                if (!GameManager.m_instance.m_ships[2].m_died)
+                {
+                    GameManager.m_instance.m_dead++;
+                }
+                GameManager.m_instance.m_ships[2].m_died = true;
+            }
+        }
+        else if (collision.gameObject.tag == "Player4")
+        {
+            if (StateManager.m_instance.m_currentState == StateManager.State.PLAY)
+            {
+                if (!GameManager.m_instance.m_ships[3].m_died)
+                {
+                    GameManager.m_instance.m_dead++;
+                }
+                GameManager.m_instance.m_ships[3].m_died = true;
             }
         }
         else
