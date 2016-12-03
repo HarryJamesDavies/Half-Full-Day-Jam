@@ -37,7 +37,8 @@ public class BulletScript : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D _collider)
     {
-        if(_collider.gameObject.tag == "Player1" || _collider.gameObject.tag == "Player2")
+        if(_collider.gameObject.tag == "Player1" || _collider.gameObject.tag == "Player2"
+            || _collider.gameObject.tag == "Player3" || _collider.gameObject.tag == "Player4")
         {
             Vector2 position = new Vector2(gameObject.transform.position.x,
            gameObject.transform.position.y);

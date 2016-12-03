@@ -28,7 +28,7 @@ GameObject:
   - 212: {fileID: 21202410}
   - 114: {fileID: 11425096}
   - 50: {fileID: 5057264}
-  - 61: {fileID: 6166494}
+  - 61: {fileID: 6150512}
   m_Layer: 0
   m_Name: Player4
   m_TagString: Player4
@@ -78,7 +78,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &6166494
+--- !u!61 &6150512
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -91,7 +91,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 7, y: 15}
+  m_Size: {x: 14, y: 12}
 --- !u!114 &11425096
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1671,7 +1671,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f3fa5f8ff99343d47bddd5aba69bc335, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 68c9de6aef16adb4fb08570766a6edd8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

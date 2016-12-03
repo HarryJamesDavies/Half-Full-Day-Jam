@@ -28,7 +28,7 @@ GameObject:
   - 212: {fileID: 21211590}
   - 114: {fileID: 11404526}
   - 50: {fileID: 5002576}
-  - 61: {fileID: 6170460}
+  - 61: {fileID: 6174966}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Player1
@@ -43,7 +43,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 184700}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: -0.00000016292068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -8.33, y: -0, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children:
   - {fileID: 464252}
@@ -78,7 +78,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &6170460
+--- !u!61 &6174966
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -89,9 +89,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 9.094947e-13}
   serializedVersion: 2
-  m_Size: {x: 14, y: 9.5}
+  m_Size: {x: 7, y: 15.5}
 --- !u!114 &11404526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1671,7 +1671,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 68c9de6aef16adb4fb08570766a6edd8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f3fa5f8ff99343d47bddd5aba69bc335, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
