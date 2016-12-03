@@ -35,6 +35,12 @@ public class Movement : MonoBehaviour
                 case "Player2":
                     PlayerMovement(2);
                     break;
+                case "Player3":
+                    PlayerMovement(3);
+                    break;
+                case "Player4":
+                    PlayerMovement(4);
+                    break;
                 default:
                     break;
             }

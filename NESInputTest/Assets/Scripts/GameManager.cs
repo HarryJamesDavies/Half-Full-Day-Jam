@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public ShipManager[] m_ships;
     public GameObject m_p1Prefab;
     public GameObject m_p2Prefab;
+    public GameObject m_p3Prefab;
+    public GameObject m_p4Prefab;
 
     public int m_NumberOfRoundsToWin = 5;
     public int m_RoundNumber;
@@ -24,8 +26,8 @@ public class GameManager : MonoBehaviour
 
     public Text m_p1ScoreText;
     public Text m_p2ScoreText;
-    public Text m_p1BoostText;
-    public Text m_p2BoostText;
+    public Text m_p3ScoreText;
+    public Text m_p4ScoreText;
     public Text m_timeText;
 
     public float m_maxTime;
@@ -45,7 +47,9 @@ public class GameManager : MonoBehaviour
     private bool m_checkStop;
 
     public bool m_twoPlayers = true;
-    public bool m_fourPlayers;
+    public bool m_fourPlayers = false;
+
+    public int m_dead = 0;
 
 
 
@@ -59,7 +63,7 @@ public class GameManager : MonoBehaviour
         //At the moment we are defaulting to 2 players
         //...
 
-        SpawnShipsForTwoPlayers();
+        //SpawnShipsForTwoPlayers();
         m_pauseLength = 0.0f;
 
         if (m_instance != null)
@@ -101,8 +105,8 @@ public class GameManager : MonoBehaviour
         {
             m_p1Score = m_ships[0].m_NumberOfWins;
             m_p2Score = m_ships[1].m_NumberOfWins;
-            m_p1Score = m_ships[2].m_NumberOfWins;
-            m_p2Score = m_ships[3].m_NumberOfWins;
+            m_p3Score = m_ships[2].m_NumberOfWins;
+            m_p4Score = m_ships[3].m_NumberOfWins;
         }
        
         switch (StateManager.m_instance.m_currentState)
@@ -115,6 +119,7 @@ public class GameManager : MonoBehaviour
                 {
                     UpdateTime();
                     UpdateScore();
+                    CheckDead();
                     break;
                 }
             case StateManager.State.PAUSE:
@@ -172,7 +177,7 @@ public class GameManager : MonoBehaviour
                 }
             case StateManager.State.RESET:
                 {
-                    if(GetGameWinner() != null)
+                    if (GetGameWinner() != null)
                     {
                         StateManager.m_instance.ChangeState(StateManager.State.GAMEOVER);
                     }
@@ -193,6 +198,14 @@ public class GameManager : MonoBehaviour
         {
             case StateManager.State.MENU:
                 {
+                    if (m_twoPlayers)
+                    {
+                        SpawnShipsForTwoPlayers();
+                    }
+                    else if (m_fourPlayers)
+                    {
+                        SpawnShipsForFourPlayers();
+                    }
                     break;
                 }
             case StateManager.State.PLAY:
@@ -269,8 +282,8 @@ public class GameManager : MonoBehaviour
         {
             m_p1ScoreText.text = "P1 Score: " + m_p1Score;
             m_p2ScoreText.text = "P2 Score: " + m_p2Score;
-           // m_p3ScoreText.text = "P3 Score: " + m_p3Score;
-           // m_p4ScoreText.text = "P4 Score: " + m_p4Score;
+            m_p3ScoreText.text = "P3 Score: " + m_p3Score;
+            m_p4ScoreText.text = "P4 Score: " + m_p4Score;
         }
     }
 
@@ -280,6 +293,7 @@ public class GameManager : MonoBehaviour
         m_pausedStartTime = m_startTime;
         m_playTime = 0.0f;
         m_pauseLength = 0.0f;
+        m_dead = 0;
 
         if (m_fourPlayers == true)
         {
@@ -341,14 +355,14 @@ public class GameManager : MonoBehaviour
          (GameObject)Instantiate(m_p2Prefab, m_ships[1].m_SpawnPoint.position, m_ships[1].m_SpawnPoint.rotation);
 
          m_ships[2].m_PlayerInstance =
-         (GameObject)Instantiate(m_p1Prefab, m_ships[2].m_SpawnPoint.position, m_ships[2].m_SpawnPoint.rotation);
+         (GameObject)Instantiate(m_p3Prefab, m_ships[2].m_SpawnPoint.position, m_ships[2].m_SpawnPoint.rotation);
 
          m_ships[3].m_PlayerInstance =
-         (GameObject)Instantiate(m_p2Prefab, m_ships[3].m_SpawnPoint.position, m_ships[3].m_SpawnPoint.rotation);
+         (GameObject)Instantiate(m_p4Prefab, m_ships[3].m_SpawnPoint.position, m_ships[3].m_SpawnPoint.rotation);
 
         //globals to use for checking the game state
         m_twoPlayers = false;
-        m_twoPlayers = true;  
+        m_fourPlayers = true;  
     }
 
     private void ResetShips()
@@ -412,6 +426,25 @@ public class GameManager : MonoBehaviour
         return null;
     }
 
+    private void CheckDead()
+    {
+        if (m_fourPlayers)
+        {
+            if (m_dead >= 3)
+            {
+                StateManager.m_instance.ChangeState(StateManager.State.RESET);
+                Debug.Log("Four player reset");
+            }
+        }
+        else
+        {
+            if (m_dead >= 1)
+            {
+                StateManager.m_instance.ChangeState(StateManager.State.RESET);
+                Debug.Log("Two player reset");
+            }
+        }
+    }
     private IEnumerator StartNewRound()
     {
         ResetShips();
