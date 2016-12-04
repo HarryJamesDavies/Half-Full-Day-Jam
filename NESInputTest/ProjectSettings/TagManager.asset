@@ -11,6 +11,7 @@ TagManager:
   - GameManager
   - StateManager
   - UIManager
+  - Bullet
   layers:
   - Default
   - TransparentFX

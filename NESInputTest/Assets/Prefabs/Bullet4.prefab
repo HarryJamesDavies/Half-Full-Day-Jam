@@ -29,7 +29,7 @@ GameObject:
   - 61: {fileID: 6113422}
   m_Layer: 9
   m_Name: Bullet4
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

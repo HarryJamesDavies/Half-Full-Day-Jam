@@ -1,10 +1,11 @@
 fileFormatVersion: 2
 guid: fb963ce0a6238ae42a46f9535a9cfd4b
-timeCreated: 1480427562
+timeCreated: 1480849267
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - m_bash: {fileID: 8300000, guid: c64476be650fc0742b7d933aec4c5610, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
