@@ -30,6 +30,11 @@ public class GameManager : MonoBehaviour
     public Text m_p4ScoreText;
     public Text m_timeText;
 
+    public Text m_p1BoostText;
+    public Text m_p2BoostText;
+    public Text m_p3BoostText;
+    public Text m_p4BoostText;
+
     public float m_maxTime;
     public bool m_countDown;
 
@@ -50,6 +55,10 @@ public class GameManager : MonoBehaviour
     public bool m_fourPlayers = false;
 
     public int m_dead = 0;
+    public float m_p1Boost = 100.0f;
+    public float m_p2Boost = 100.0f;
+    public float m_p3Boost = 100.0f;
+    public float m_p4Boost = 100.0f;
 
 
 
@@ -113,7 +122,48 @@ public class GameManager : MonoBehaviour
             m_p3Score = m_ships[2].m_NumberOfWins;
             m_p4Score = m_ships[3].m_NumberOfWins;
         }
-       
+
+        m_p1BoostText.text = "Boost: " + Mathf.Round(m_p1Boost);
+        m_p2BoostText.text = "Boost: " + Mathf.Round(m_p2Boost);
+        m_p3BoostText.text = "Boost: " + Mathf.Round(m_p3Boost);
+        m_p4BoostText.text = "Boost: " + Mathf.Round(m_p4Boost);
+
+        if (m_p1Boost < 100.0f)
+        {
+            m_p1Boost += 0.2f;
+        }
+        else
+        {
+            m_p1Boost = 100.0f;
+        }
+
+        if (m_p2Boost < 100.0f)
+        {
+            m_p2Boost += 0.2f;
+        }
+        else
+        {
+            m_p2Boost = 100.0f;
+        }
+
+        if (m_p3Boost < 100.0f)
+        {
+            m_p3Boost += 0.2f;
+        }
+        else
+        {
+            m_p3Boost = 100.0f;
+        }
+
+        if (m_p4Boost < 100.0f)
+        {
+            m_p4Boost += 0.2f;
+        }
+        else
+        {
+            m_p4Boost = 100.0f;
+        }
+
         switch (StateManager.m_instance.m_currentState)
         {
             case StateManager.State.MENU:
@@ -312,6 +362,11 @@ public class GameManager : MonoBehaviour
             m_p1Score = 0.0f;
             m_p2Score = 0.0f;
         }
+
+       m_p1Boost = 100.0f;
+       m_p2Boost = 100.0f;
+       m_p3Boost = 100.0f;
+       m_p4Boost = 100.0f;
 
     }
 
