@@ -46,6 +46,7 @@ MonoBehaviour:
   m_rareAsteriods:
   - {fileID: 117150, guid: 9184a6f667473b14fbdfbf1e4471d7f9, type: 2}
   - {fileID: 173482, guid: 47fb663a59597a9469b58d7994844a96, type: 2}
+  - {fileID: 151004, guid: 9bf29538fbad0bf458a3c6d6adc9d5c0, type: 2}
   side: 0
   counter: 0
   timeToShoot: 0
