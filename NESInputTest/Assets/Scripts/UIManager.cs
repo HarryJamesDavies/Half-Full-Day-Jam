@@ -11,12 +11,16 @@ public class UIManager : MonoBehaviour {
     public GameObject m_p3Score;
     public GameObject m_p4Score;
     public GameObject m_gameOver;
+    public GameObject m_titleRef;
+    public GameObject m_title;
 
     public Text m_numberOfPlayers;
 
 	// Use this for initialization
 	void Start () {
-	}
+
+        m_title = Instantiate(m_titleRef);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -140,6 +144,7 @@ public class UIManager : MonoBehaviour {
             case StateManager.State.MENU:
                 {
                     m_HUD.SetActive(false);
+                    m_title = Instantiate(m_titleRef);
                     m_mainMenu.SetActive(true);
                     break;
                 }
@@ -183,6 +188,7 @@ public class UIManager : MonoBehaviour {
             case StateManager.State.MENU:
                 {
                     m_mainMenu.SetActive(false);
+                    Destroy(m_title);
                     break;
                 }
             case StateManager.State.PLAY:

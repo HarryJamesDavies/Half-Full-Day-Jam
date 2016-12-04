@@ -223,6 +223,8 @@ MonoBehaviour:
   m_p3Score: {fileID: 346917884}
   m_p4Score: {fileID: 437557149}
   m_gameOver: {fileID: 1630815001}
+  m_titleRef: {fileID: 107872, guid: b3979eb3847eff2429148e7e99ea37d4, type: 2}
+  m_title: {fileID: 0}
   m_numberOfPlayers: {fileID: 651301803}
 --- !u!1 &158656811
 GameObject:
