@@ -132,7 +132,12 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 11411736, guid: 0815e4acbbce4514ea6abbe4e6e5fd1f, type: 2}
+      propertyPath: m_BlackHoleClip2
+      value: 
+      objectReference: {fileID: 8300000, guid: 9bc14ac6666a02c438fa771799b63afa, type: 3}
+    m_RemovedComponents:
+    - {fileID: 8267106, guid: 0815e4acbbce4514ea6abbe4e6e5fd1f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 0815e4acbbce4514ea6abbe4e6e5fd1f, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &67690203
