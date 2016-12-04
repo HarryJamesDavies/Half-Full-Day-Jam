@@ -104,7 +104,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PlayerNumber: 0
   m_rb: {fileID: 0}
-  m_bash: {fileID: 8300000, guid: c64476be650fc0742b7d933aec4c5610, type: 3}
+  m_bash: {fileID: 8300000, guid: 2b43a16684988b047966fd0b11b8f235, type: 3}
 --- !u!198 &19813604
 ParticleSystem:
   m_ObjectHideFlags: 1
