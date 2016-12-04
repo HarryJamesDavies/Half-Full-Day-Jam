@@ -14,7 +14,6 @@ public class Movement : MonoBehaviour
 
     float m_thrust;
     float m_boostSpeed;
-    float m_boostTotal;
     float m_rotationSpeed;
 
 
@@ -25,7 +24,6 @@ public class Movement : MonoBehaviour
         m_rb = GetComponent<Rigidbody2D>();
         m_thrust = 5.0f;
         m_boostSpeed = 400.0f;
-        m_boostTotal = 100.0f;
         m_rotationSpeed = 50.0f;
     }
 
@@ -50,15 +48,6 @@ public class Movement : MonoBehaviour
                     break;
                 default:
                     break;
-            }
-
-            if (m_boostTotal < 100.0f)
-            {
-                m_boostTotal += 0.2f;
-            }
-            else
-            {
-                m_boostTotal = 100.0f;
             }
 
             Vector2 position = new Vector2(transform.position.x, transform.position.y);
@@ -95,12 +84,42 @@ public class Movement : MonoBehaviour
             }
             else if (Input.GetButtonDown("P" + _controller + "-B(NES)"))
             {
-                if (m_boostTotal >= 40.0f)
+                switch (_controller)
                 {
-                    Vector2 m_boostForce = (Vector2)transform.right * m_boostSpeed * Time.deltaTime;
-                    gameObject.GetComponent<Rigidbody2D>().AddForce(m_boostForce, ForceMode2D.Impulse);
-                    m_boostTotal -= 40.0f;
-                    Debug.Log(m_boostTotal);
+                    case 1:
+                        if (GameManager.m_instance.m_p1Boost >= 20.0f)
+                        {
+                            Vector2 m_boostForce = (Vector2)transform.right * m_boostSpeed * Time.deltaTime;
+                            gameObject.GetComponent<Rigidbody2D>().AddForce(m_boostForce, ForceMode2D.Impulse);
+                            GameManager.m_instance.m_p1Boost -= 20.0f;
+                        }
+                        break;
+                    case 2:
+                        if (GameManager.m_instance.m_p2Boost >= 20.0f)
+                        {
+                            Vector2 m_boostForce = (Vector2)transform.right * m_boostSpeed * Time.deltaTime;
+                            gameObject.GetComponent<Rigidbody2D>().AddForce(m_boostForce, ForceMode2D.Impulse);
+                            GameManager.m_instance.m_p2Boost -= 20.0f;
+                        }
+                        break;
+                    case 3:
+                        if (GameManager.m_instance.m_p3Boost >= 20.0f)
+                        {
+                            Vector2 m_boostForce = (Vector2)transform.right * m_boostSpeed * Time.deltaTime;
+                            gameObject.GetComponent<Rigidbody2D>().AddForce(m_boostForce, ForceMode2D.Impulse);
+                            GameManager.m_instance.m_p3Boost -= 20.0f;
+                        }
+                        break;
+                    case 4:
+                        if (GameManager.m_instance.m_p4Boost >= 20.0f)
+                        {
+                            Vector2 m_boostForce = (Vector2)transform.right * m_boostSpeed * Time.deltaTime;
+                            gameObject.GetComponent<Rigidbody2D>().AddForce(m_boostForce, ForceMode2D.Impulse);
+                            GameManager.m_instance.m_p4Boost -= 20.0f;
+                        }
+                        break;
+                    default:
+                        break;
                 }
             }
             else if (Input.GetButtonDown("P" + _controller + "-Select(NES)"))
