@@ -26,7 +26,7 @@ GameObject:
   - 4: {fileID: 455060}
   - 114: {fileID: 11412290}
   - 50: {fileID: 5061152}
-  - 61: {fileID: 6113422}
+  - 61: {fileID: 6112066}
   m_Layer: 9
   m_Name: Bullet4
   m_TagString: Untagged
@@ -41,8 +41,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173482}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.951432, y: -8.530222, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 5}
+  m_LocalPosition: {x: -8.471843, y: -1.3267685, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 472532}
   m_Father: {fileID: 0}
@@ -55,7 +55,7 @@ Transform:
   m_GameObject: {fileID: 162998}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 455060}
   m_RootOrder: 0
@@ -76,7 +76,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &6113422
+--- !u!61 &6112066
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -89,7 +89,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1.05, y: 2.325}
+  m_Size: {x: 3.5, y: 4.9}
 --- !u!114 &11412290
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -128,7 +128,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 286242e5915bb7f45b6fd4a4fa72a395, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 32feb13c0ac1aee4d9c865ccba7b13ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
