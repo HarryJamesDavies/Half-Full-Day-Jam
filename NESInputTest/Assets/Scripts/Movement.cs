@@ -7,6 +7,11 @@ public class Movement : MonoBehaviour
 
     public Rigidbody2D m_rb;
 
+    [SerializeField]
+    AudioClip m_bash;
+
+    AudioSource m_audio;
+
     float m_thrust;
     float m_boostSpeed;
     float m_boostTotal;
@@ -15,6 +20,8 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
+        m_audio = GetComponent<AudioSource>();
+        m_audio.clip = m_bash;
         m_rb = GetComponent<Rigidbody2D>();
         m_thrust = 5.0f;
         m_boostSpeed = 400.0f;
@@ -64,6 +71,15 @@ public class Movement : MonoBehaviour
 
     }
 
+    void OnCollisionEnter2D(Collision2D _collider)
+    {
+        if (_collider.gameObject.tag == "Player1" || _collider.gameObject.tag == "Player2"
+            || _collider.gameObject.tag == "Player3" || _collider.gameObject.tag == "Player4"
+            || _collider.gameObject.tag == "Bullet" && StateManager.m_instance.m_currentState == StateManager.State.PLAY)
+        {
+            m_audio.Play();
+        }
+    }
     void PlayerMovement(int _controller)
     {
         if (StateManager.m_instance.m_currentState == StateManager.State.PLAY)

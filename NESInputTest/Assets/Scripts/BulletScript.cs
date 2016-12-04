@@ -6,12 +6,15 @@ public class BulletScript : MonoBehaviour {
     int m_bulletDirection;
     bool m_inAir;
     Rigidbody2D m_rigidBody;
+    
     Vector2 bulletForce;
     float drag;
     public Vector3 m_rotationVector;
 
 	// Use this for initialization
 	void Start () {
+        
+        //m_Audio.playOnAwake = false;
         m_rigidBody = gameObject.GetComponent<Rigidbody2D>();
         drag = 50.0f;
         //StartCoroutine(countdownTillDeath(5.0f));
@@ -40,9 +43,11 @@ public class BulletScript : MonoBehaviour {
         if(_collider.gameObject.tag == "Player1" || _collider.gameObject.tag == "Player2"
             || _collider.gameObject.tag == "Player3" || _collider.gameObject.tag == "Player4")
         {
+            
             Vector2 position = new Vector2(gameObject.transform.position.x,
            gameObject.transform.position.y);
-            _collider.gameObject.GetComponent<Rigidbody2D>().AddForce(BlackHole.m_instance.GetGravityForce(position, true) * 10, ForceMode2D.Impulse);
+            _collider.gameObject.GetComponent<Rigidbody2D>()
+                .AddForce(BlackHole.m_instance.GetGravityForce(position, true) * 10, ForceMode2D.Impulse);
             Destroy(gameObject);
         }
         

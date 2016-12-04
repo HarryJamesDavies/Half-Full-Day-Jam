@@ -8,8 +8,10 @@ public class BlackHole : MonoBehaviour {
     public Vector3 m_rotationVector;
     public float m_gravityCoefficient;
 
-	public AudioClip BlackHoleClip;
-	public AudioClip BlackHoleClip2;
+    AudioSource m_audio;
+
+    //public AudioClip m_BlackHoleClip;
+	public AudioClip m_BlackHoleClip2;
 
 	// Use this for initialization
 	void Start ()
@@ -21,9 +23,10 @@ public class BlackHole : MonoBehaviour {
         else
         {
             m_instance = this;
-			AudioSource audio = GetComponent<AudioSource>();
-			audio.clip = BlackHoleClip;
-			audio.Play();
+			m_audio = GetComponent<AudioSource>();
+            m_audio.clip = m_BlackHoleClip2;
+            //audio.clip = m_BlackHoleClip;
+            //audio.Play();
         }
 	}
 	
@@ -45,6 +48,8 @@ public class BlackHole : MonoBehaviour {
                 if (!GameManager.m_instance.m_ships[0].m_died)
                 {
                     GameManager.m_instance.m_dead++;
+                    
+                    m_audio.Play();
                 }
                 GameManager.m_instance.m_ships[0].m_died = true;
             }
@@ -56,6 +61,8 @@ public class BlackHole : MonoBehaviour {
                 if (!GameManager.m_instance.m_ships[1].m_died)
                 {
                     GameManager.m_instance.m_dead++;
+                    
+                    m_audio.Play();
                 }
                 GameManager.m_instance.m_ships[1].m_died = true;
                 //StateManager.m_instance.ChangeState(StateManager.State.RESET);
@@ -68,6 +75,8 @@ public class BlackHole : MonoBehaviour {
                 if (!GameManager.m_instance.m_ships[2].m_died)
                 {
                     GameManager.m_instance.m_dead++;
+                    
+                    m_audio.Play();
                 }
                 GameManager.m_instance.m_ships[2].m_died = true;
             }
@@ -79,6 +88,8 @@ public class BlackHole : MonoBehaviour {
                 if (!GameManager.m_instance.m_ships[3].m_died)
                 {
                     GameManager.m_instance.m_dead++;
+                    
+                    m_audio.Play();
                 }
                 GameManager.m_instance.m_ships[3].m_died = true;
             }

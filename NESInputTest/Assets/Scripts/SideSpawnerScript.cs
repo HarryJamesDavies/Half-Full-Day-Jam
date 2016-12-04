@@ -99,7 +99,7 @@ public class SideSpawnerScript : MonoBehaviour {
             min = -25.0f;
             max = 25.0f;
 
-            posY = 15.0f; //up or down boundary
+            posY = 25.0f; //up or down boundary
             posX = Random.Range(min, max); //right or left boundary boundary
 
             transform.position = new Vector3(posX, posY, 0.0f);
@@ -123,7 +123,7 @@ public class SideSpawnerScript : MonoBehaviour {
             min = -25.0f;
             max = 25.0f;
 
-            posY = -15.0f; //up or down boundary
+            posY = -25.0f; //up or down boundary
             posX = Random.Range(min, max); //right or left boundary boundary
 
             transform.position = new Vector3(posX, posY, 0.0f);
