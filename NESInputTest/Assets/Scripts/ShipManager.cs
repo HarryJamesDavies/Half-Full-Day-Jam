@@ -38,4 +38,14 @@ public class ShipManager
 
         Debug.Log(m_NumberOfWins);
     }
+
+    void Update()
+    {
+        UpdateDied();
+    }
+
+    void UpdateDied()
+    {
+        m_Movement.m_died = m_died;
+    }
 }

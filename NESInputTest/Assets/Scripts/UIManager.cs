@@ -94,13 +94,13 @@ public class UIManager : MonoBehaviour {
                 }
             case StateManager.State.PLAY:
                 {
-                    if ((Input.GetKeyDown(KeyCode.Space)) || (Input.GetButtonDown("P1-Start(NES)")) || (Input.GetButtonDown("P2-Start(NES)")))
-                    {
-                        if (StateManager.m_instance.m_currentState != StateManager.State.MENU)
-                        {
-                            StateManager.m_instance.ChangeState(StateManager.State.MENU);
-                        }
-                    }
+                    //if ((Input.GetKeyDown(KeyCode.Space)) || (Input.GetButtonDown("P1-Start(NES)")) || (Input.GetButtonDown("P2-Start(NES)")))
+                    //{
+                    //    if (StateManager.m_instance.m_currentState != StateManager.State.MENU)
+                    //    {
+                    //        StateManager.m_instance.ChangeState(StateManager.State.MENU);
+                    //    }
+                    //}
 
                     if ((Input.GetKeyDown(KeyCode.P)) || (Input.GetButtonDown("P1-Select(NES)")) || (Input.GetButtonDown("P2-Select(NES)")))
                     {

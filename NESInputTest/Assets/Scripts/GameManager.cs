@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
     public float m_p3Boost = 100.0f;
     public float m_p4Boost = 100.0f;
 
+    public bool m_timeOut = false;
 
 
     // Use this for initialization
@@ -88,7 +89,25 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (m_playTime >= m_maxTime && !m_timeOut)
+        {
+            m_timeOut = true;
+            foreach (ShipManager ships in m_ships)
+            {
+                if (!ships.m_died)
+                {
+                    ships.m_NumberOfWins++;
+                }
+            }
+
+            m_p1Score = m_ships[0].m_NumberOfWins;
+            m_p2Score = m_ships[1].m_NumberOfWins;
+            m_p3Score = m_ships[2].m_NumberOfWins;
+            m_p4Score = m_ships[3].m_NumberOfWins;
+            StateManager.m_instance.ChangeState(StateManager.State.RESET);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
         }
@@ -187,6 +206,8 @@ public class GameManager : MonoBehaviour
                 }
             case StateManager.State.RESET:
                 {
+                    m_timeOut = false;
+                    m_playTime = 0.0f;
                     StateManager.m_instance.ChangeState(StateManager.State.PLAY);
                     break;
                 }
@@ -227,7 +248,10 @@ public class GameManager : MonoBehaviour
             case StateManager.State.GAMEOVER:
                 {
                     UpdateScore();
-                    m_Roundwinner.m_NumberOfWins = 0;
+                    for (int i = 0; i < m_ships.Length; i++)
+                    {
+                        m_ships[i].m_NumberOfWins = 0;
+                    }
                     break;
                 }
             case StateManager.State.RESET:
@@ -265,17 +289,24 @@ public class GameManager : MonoBehaviour
                 }
             case StateManager.State.PLAY:
                 {
-                    m_Roundwinner = null;
-
-                    m_Roundwinner = GetRoundWinner();
-
-                    if (m_Roundwinner != null)
+                    if (!m_timeOut)
                     {
-                        m_Roundwinner.m_NumberOfWins++;
-                        Debug.Log(m_Roundwinner.m_NumberOfWins);
-                    }
+                        m_Roundwinner = null;
 
-                    m_GameWinner = GetGameWinner();
+                        m_Roundwinner = GetRoundWinner();
+
+                        if (m_Roundwinner != null)
+                        {
+                            m_Roundwinner.m_NumberOfWins++;
+                            Debug.Log(m_Roundwinner.m_NumberOfWins);
+                        }
+
+                        m_GameWinner = GetGameWinner();
+                    }
+                    else
+                    {
+                        //m_timeOut = false;
+                    }
                     break;
                 }
             case StateManager.State.PAUSE:
@@ -329,16 +360,16 @@ public class GameManager : MonoBehaviour
     {
         if (m_twoPlayers == true)
         {
-            m_p1ScoreText.text = "P1 Score: " + m_p1Score;
-            m_p2ScoreText.text = "P2 Score: " + m_p2Score;
+            m_p1ScoreText.text = "Tardis: " + m_p1Score;
+            m_p2ScoreText.text = "Enterprise: " + m_p2Score;
         }
 
         if(m_fourPlayers == true)
         {
-            m_p1ScoreText.text = "P1 Score: " + m_p1Score;
-            m_p2ScoreText.text = "P2 Score: " + m_p2Score;
-            m_p3ScoreText.text = "P3 Score: " + m_p3Score;
-            m_p4ScoreText.text = "P4 Score: " + m_p4Score;
+            m_p1ScoreText.text = "Tardis: " + m_p1Score;
+            m_p2ScoreText.text = "Enterprise: " + m_p2Score;
+            m_p3ScoreText.text = "Falcon: " + m_p3Score;
+            m_p4ScoreText.text = "Shuttle: " + m_p4Score;
         }
     }
 

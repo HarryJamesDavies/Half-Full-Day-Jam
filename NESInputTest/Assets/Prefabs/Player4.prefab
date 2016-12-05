@@ -181,6 +181,7 @@ MonoBehaviour:
   m_PlayerNumber: 0
   m_rb: {fileID: 0}
   m_bash: {fileID: 8300000, guid: 2b43a16684988b047966fd0b11b8f235, type: 3}
+  m_died: 0
 --- !u!198 &19890424
 ParticleSystem:
   m_ObjectHideFlags: 1
