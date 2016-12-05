@@ -1075,7 +1075,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1008722241
 MonoBehaviour:
@@ -1109,7 +1109,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Player 2: '
+  m_Text: 'Enterprise: '
 --- !u!222 &1008722242
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1283,7 +1283,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Player 3: '
+  m_Text: 'Falcon: '
 --- !u!222 &1213949987
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2058,7 +2058,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Player 4: '
+  m_Text: 'Shuttle: '
 --- !u!222 &1644016404
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2131,7 +2131,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Player 1: '
+  m_Text: 'Tardis: '
 --- !u!222 &1650394134
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2455,6 +2455,7 @@ MonoBehaviour:
   m_p2Boost: 100
   m_p3Boost: 100
   m_p4Boost: 100
+  m_timeOut: 0
 --- !u!1 &1859740279
 GameObject:
   m_ObjectHideFlags: 0

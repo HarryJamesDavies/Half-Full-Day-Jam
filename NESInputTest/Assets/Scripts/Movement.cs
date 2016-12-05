@@ -7,6 +7,8 @@ public class Movement : MonoBehaviour
 
     public Rigidbody2D m_rb;
 
+    ShipManager m_currentShip;
+
     [SerializeField]
     AudioClip m_bash;
 
@@ -15,6 +17,8 @@ public class Movement : MonoBehaviour
     float m_thrust;
     float m_boostSpeed;
     float m_rotationSpeed;
+
+    public bool m_died = false;
 
 
     void Start()
@@ -25,6 +29,14 @@ public class Movement : MonoBehaviour
         m_thrust = 5.0f;
         m_boostSpeed = 400.0f;
         m_rotationSpeed = 50.0f;
+
+        foreach (ShipManager ships in GameManager.m_instance.m_ships)
+        {
+            if (this.gameObject == ships.m_PlayerInstance)
+            {
+                m_currentShip = ships;
+            }
+        }
     }
 
     void Update()
@@ -51,7 +63,14 @@ public class Movement : MonoBehaviour
             }
 
             Vector2 position = new Vector2(transform.position.x, transform.position.y);
-            gameObject.GetComponent<Rigidbody2D>().AddForce(BlackHole.m_instance.GetGravityForce(position, true), ForceMode2D.Force);
+            if (!m_currentShip.m_died)
+            {
+                gameObject.GetComponent<Rigidbody2D>().AddForce(BlackHole.m_instance.GetGravityForce(position, true), ForceMode2D.Force);
+            }
+            else
+            {
+                gameObject.GetComponent<Rigidbody2D>().AddForce(BlackHole.m_instance.GetGravityForce(position, true) * 50.0f, ForceMode2D.Force);
+            }
         }
         else if (StateManager.m_instance.m_currentState == StateManager.State.PAUSE || StateManager.m_instance.m_currentState == StateManager.State.MENU)
         {
@@ -68,10 +87,14 @@ public class Movement : MonoBehaviour
                 || _collider.gameObject.tag == "Player3" || _collider.gameObject.tag == "Player4"
                 || _collider.gameObject.tag == "Bullet")
             {
-                m_audio.Play();
+                if (!m_currentShip.m_died)
+                {
+                    m_audio.Play();
+                }
             }
         }
     }
+
     void PlayerMovement(int _controller)
     {
         if (StateManager.m_instance.m_currentState == StateManager.State.PLAY)
@@ -87,23 +110,23 @@ public class Movement : MonoBehaviour
                 switch (_controller)
                 {
                     case 1:
-                        if (GameManager.m_instance.m_p1Boost >= 20.0f)
+                        if (GameManager.m_instance.m_p1Boost >= 30.0f)
                         {
                             Vector2 m_boostForce = (Vector2)transform.right * m_boostSpeed * Time.deltaTime;
                             gameObject.GetComponent<Rigidbody2D>().AddForce(m_boostForce, ForceMode2D.Impulse);
-                            GameManager.m_instance.m_p1Boost -= 20.0f;
+                            GameManager.m_instance.m_p1Boost -= 30.0f;
                         }
                         break;
                     case 2:
-                        if (GameManager.m_instance.m_p2Boost >= 20.0f)
+                        if (GameManager.m_instance.m_p2Boost >= 30.0f)
                         {
                             Vector2 m_boostForce = (Vector2)transform.right * m_boostSpeed * Time.deltaTime;
                             gameObject.GetComponent<Rigidbody2D>().AddForce(m_boostForce, ForceMode2D.Impulse);
-                            GameManager.m_instance.m_p2Boost -= 20.0f;
+                            GameManager.m_instance.m_p2Boost -= 30.0f;
                         }
                         break;
                     case 3:
-                        if (GameManager.m_instance.m_p3Boost >= 20.0f)
+                        if (GameManager.m_instance.m_p3Boost >= 30.0f)
                         {
                             Vector2 m_boostForce = (Vector2)transform.right * m_boostSpeed * Time.deltaTime;
                             gameObject.GetComponent<Rigidbody2D>().AddForce(m_boostForce, ForceMode2D.Impulse);
@@ -111,25 +134,25 @@ public class Movement : MonoBehaviour
                         }
                         break;
                     case 4:
-                        if (GameManager.m_instance.m_p4Boost >= 20.0f)
+                        if (GameManager.m_instance.m_p4Boost >= 30.0f)
                         {
                             Vector2 m_boostForce = (Vector2)transform.right * m_boostSpeed * Time.deltaTime;
                             gameObject.GetComponent<Rigidbody2D>().AddForce(m_boostForce, ForceMode2D.Impulse);
-                            GameManager.m_instance.m_p4Boost -= 20.0f;
+                            GameManager.m_instance.m_p4Boost -= 30.0f;
                         }
                         break;
                     default:
                         break;
                 }
             }
-            else if (Input.GetButtonDown("P" + _controller + "-Select(NES)"))
-            {
-                transform.position += new Vector3(0.0f, -1.0f, 0.0f);
-            }
-            else if (Input.GetButtonDown("P" + _controller + "-Start(NES)"))
-            {
-                transform.position += new Vector3(-1.0f, 0.0f, 0.0f);
-            }
+            //else if (Input.GetButtonDown("P" + _controller + "-Select(NES)"))
+            //{
+            //    transform.position += new Vector3(0.0f, -1.0f, 0.0f);
+            //}
+            //else if (Input.GetButtonDown("P" + _controller + "-Start(NES)"))
+            //{
+            //    transform.position += new Vector3(-1.0f, 0.0f, 0.0f);
+            //}
 
             float m_rotation = -Input.GetAxis("P" + _controller + "-Horizontal(NES)") * m_rotationSpeed * Time.deltaTime;
             transform.Rotate(0, 0, m_rotation);
